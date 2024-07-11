@@ -11,6 +11,9 @@ const selectUnit = ref(null)
 const selectAgency = ref(null)
 const inputSearch = ref(null)
 const valueSearch = ref("")
+const dataSearchName = ref([])
+const isShowDataSearch = ref(false)
+const selectedSeatDara = ref(null);
 
 const unitOptions = computed(() => {
     return units[selectDelegate.value]?.map((unit) => {
@@ -22,12 +25,15 @@ const unitOptions = computed(() => {
 
 const agenciesOptions = computed(() => {
     return unitOptions.value?.find((unit) => {
-        console.log(unit,  selectUnit.value);
         return unit.value === selectUnit.value
     })?.children;
 })
 
-const nameAngency = computed(() => {} )
+const handleSearch = (event) => {
+    isShowDataSearch.value = true
+    valueSearch.value = event.target.value
+    dataSearchName.value = nameAgency.filter(item => item.name.toLowerCase().includes(event.target.value.toLowerCase()));
+}
 
 const handleFocusInput = () => {
     if (inputSearch.value) {
@@ -49,7 +55,6 @@ const stopVideo = () => {
     }
 }
 
-
 const resetVideo = () => {
     if (video.value) {
         video.value.currentTime = 0;
@@ -65,6 +70,12 @@ const openModal = () => {
 const closeModal = () => {
     isShowModal.value = false
     document.body.style.overflow = 'auto'
+}
+
+const handleSelect = (item) => {
+    valueSearch.value = item.name
+    selectAgency.value = item.value
+    isShowDataSearch.value = false
 }
 
 onMounted(() => {
@@ -203,8 +214,8 @@ onMounted(() => {
             leave-from-class="transform opacity-100"
             leave-to-class="transform opacity-0"
        >
-            <Modal v-if="isShowModal" @close="closeModal()">
-                <div class="bg-white py-4 h-full relative">
+            <Modal v-if="isShowModal" @close="closeModal()"> 
+                <div class="bg-white py-4 h-full relative overflow-hidden w-screen">
                     <button class="absolute top-2 right-2 w-[40px] h-[40px] rounded-full hover:bg-[#CE7A58]/20 flex justify-center items-center" @click="closeModal()">
                         <IconClose />
                     </button>
@@ -289,10 +300,41 @@ onMounted(() => {
                                     class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative text-center"
                                     @click="handleFocusInput"
                                 >
-                                    <input ref="inputSearch" class="w-1/2 outline-none text-lg text-[#8B8B8B]" type="text" placeholder="Tìm kiếm theo tên cơ quan, tổ chức cá nhân... " />
+                                    <input ref="inputSearch" :value="valueSearch" class="w-1/2 outline-none text-lg text-[#8B8B8B]" type="text" placeholder="Tìm kiếm theo tên cơ quan, tổ chức cá nhân... " @input="handleSearch" @blur="handleBlurInput"/>
+                                    <button 
+                                        v-if="valueSearch" 
+                                        type="button" 
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-2xl" 
+                                        @click="valueSearch = ''"
+                                    >
+                                        <Icon name="carbon:close-outline" />
+                                    </button>
+                                    <ul
+                                        v-if="dataSearchName.length > 0 && isShowDataSearch" 
+                                        class="flex flex-col rounded-md bg-white shadow-md py-2 px-3 absolute top-[110%] left-0 w-full max-h-80 overflow-y-auto"
+                                    >
+                                        <li 
+                                            v-for="item in dataSearchName" 
+                                            :key="item.name" 
+                                            class="text-lg text-[#8B8B8B] hover:text-[#962400] hover:bg-slate-400 cursor-pointer py-3" 
+                                            @click="handleSelect(item)">
+                                            {{ item.name }}
+                                        </li>
+                                    </ul>
                                 </div>
                            </div>
+
+                           <div class="">
+                                <button 
+                                    class="px-[43px] h-full rounded-md py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                    @click="handleSearcNameSeat"
+                                >
+                                    Tìm kiếm
+                                </button>
+                           </div>
                         </form>
+
+                        <SeatingChart :seat-id="selectAgency" />
                     </div>
                 </div>
             </Modal>
