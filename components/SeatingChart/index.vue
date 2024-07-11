@@ -60,7 +60,7 @@
 
                 <div class="grid grid-cols-2 gap-4 mt-4">
                     <SeatingChartSeat
-                        v-for="(seat, index) in leftSeats"
+                        v-for="(seat, index) in rightSeats"
                         :key="index"
                         :id="seat.id"
                         :row="seat.row"
@@ -81,38 +81,46 @@ const props = defineProps({
 
 const selectedSeat = ref([]);
 const leftSeats = ref([
-    { id: "C101", row: 0, column: ["1", "2", "3"], color: "yellow" },
-    { id: "C101", row: 0, column: ["4", "5", "6"], color: "yellow" },
-    { id: "C201", row: 0, column: ["7", "8", "9"], color: "yellow" },
-    { id: "C201", row: 0, column: ["10", "11", "12"], color: "yellow" },
-    { id: "C201", row: 0, column: ["7", "8", "9"], color: "yellow" },
-    { id: "C201", row: 0, column: ["10", "11", "12"], color: "yellow" },
+    { id: "C301", row: 0, column: ["C306", "C305", "C304"], color: "yellow" },
+    { id: "C302", row: 0, column: ["C303", "C302", "C301"], color: "yellow" },
+    { id: "C201", row: 0, column: ["C206", "C205", "C204"], color: "yellow" },
+    { id: "C202", row: 0, column: ["C203", "C202", "C201",], color: "yellow" },
+    { id: "C101", row: 0, column: ["C106", "C105", "C104"], color: "yellow" },
+    { id: "C102", row: 0, column: ["C103", "C102", "C101"], color: "yellow" },
 ]);
-const rightSeats = ref([]);
+
+const rightSeats = ref([
+    { id: "C101", row: 0, column: ["B306", "B305", "B304"], color: "yellow" },
+    { id: "C101", row: 0, column: ["B303", "B302", "B301"], color: "yellow" },
+    { id: "C201", row: 0, column: ["B206", "B205", "B204"], color: "yellow" },
+    { id: "C201", row: 0, column: ["B203", "B202", "B201"], color: "yellow" },
+    { id: "C201", row: 0, column: ["B106", "B105", "B104"], color: "yellow" },
+    { id: "C201", row: 0, column: ["B103", "B102", "B101"], color: "yellow" },
+]);
 const middleSeats = ref([
-    { id: "A301", row: 0, column: ["13", "14", "15"], color: "yellow" },
-    { id: "A302", row: 0, column: ["16", "17", "18"], color: "yellow" },
-    { id: "A303", row: 0, column: ["19", "20", "21"], color: "yellow" },
-    { id: "A304", row: 0, column: ["22", "23", "24"], color: "yellow" },
-    { id: "A305", row: 0, column: ["25", "26", "27"], color: "yellow" },
-    { id: "A306", row: 0, column: ["28", "29", "30"], color: "yellow" },
-    { id: "A307", row: 0, column: ["31", "32", "33"], color: "yellow" },
-    { id: "A201", row: 0, column: ["34", "35", "36"], color: "yellow" },
-    { id: "A202", row: 0, column: ["37", "38", "39"], color: "yellow" },
-    { id: "A203", row: 0, column: ["40", "41", "42"], color: "yellow" },
-    { id: "A204", row: 0, column: ["43", "44", "45"], color: "yellow" },
-    { id: "A205", row: 0, column: ["46", "47", "48"], color: "yellow" },
-    { id: "A206", row: 0, column: ["49", "50", "51"], color: "yellow" },
-    { id: "A207", row: 0, column: ["52", "53", "54"], color: "yellow" },
+    { id: "A301", row: 0, column: ["A321", "A320", "A319"], color: "yellow" },
+    { id: "A302", row: 0, column: ["A318", "A317", "A316"], color: "yellow" },
+    { id: "A303", row: 0, column: ["A315", "A314", "A313"], color: "yellow" },
+    { id: "A304", row: 0, column: ["A312", "A311", "A310"], color: "yellow" },
+    { id: "A305", row: 0, column: ["A309", "A308", "A307"], color: "yellow" },
+    { id: "A306", row: 0, column: ["A306", "A305", "A304"], color: "yellow" },
+    { id: "A307", row: 0, column: ["A303", "A302", "A301"], color: "yellow" },
+    { id: "A201", row: 0, column: ["A221", "A220", "A219"], color: "yellow" },
+    { id: "A202", row: 0, column: ["A218", "A217", "A216"], color: "yellow" },
+    { id: "A203", row: 0, column: ["A215", "A214", "A213"], color: "yellow" },
+    { id: "A204", row: 0, column: ["A212", "A211", "A210"], color: "yellow" },
+    { id: "A205", row: 0, column: ["A209", "A208", "A207"], color: "yellow" },
+    { id: "A206", row: 0, column: ["A206", "A205", "A204"], color: "yellow" },
+    { id: "A207", row: 0, column: ["A203", "A202", "A201"], color: "yellow" },
 ]);
 
 const middleBottomSeats = ref([
-    { id: "A101", row: 0, column: ["55", "56", "57"], color: "yellow" },
-    { id: "A102", row: 0, column: ["58", "59", "60"], color: "yellow" },
-    { id: "A103", row: 0, column: ["61", "", "62"], color: "yellow" },
-    { id: "A104", row: 0, column: ["63", "", "64"], color: "yellow" },
-    { id: "A105", row: 0, column: ["65", "66", "67"], color: "yellow" },
-    { id: "A106", row: 0, column: ["68", "69", "70"], color: "yellow" },
+    { id: "A101", row: 0, column: ["A116", "A115", "A114"], color: "yellow" },
+    { id: "A102", row: 0, column: ["A113", "A112", "A111"], color: "yellow" },
+    { id: "A103", row: 0, column: ["A110", "", "A109"], color: "yellow" },
+    { id: "A104", row: 0, column: ["A108", "", "A107"], color: "yellow" },
+    { id: "A105", row: 0, column: ["A106", "A105", "A104"], color: "yellow" },
+    { id: "A106", row: 0, column: ["A103", "A102", "A101"], color: "yellow" },
 ]);
 
 onMounted(() => {

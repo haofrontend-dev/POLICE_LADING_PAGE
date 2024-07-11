@@ -16,6 +16,7 @@ const valueSearch = ref("");
 const dataSearchName = ref([]);
 const isShowDataSearch = ref(false);
 const selectedSeatDara = ref(null);
+const loading = ref(false);
 
 const unitOptions = computed(() => {
     return units[selectDelegate.value]?.map((unit) => {
@@ -83,8 +84,10 @@ const handleSelect = (item) => {
 };
 
 const handleSearchSeat = () => {
+    loading.value = true;
     setTimeout(() => {
-        selectedSeatDara.value = selectAgency.value.value;
+        selectedSeatDara.value = selectAgency.value;
+        loading.value = false;
         $swal.fire({
             title: selectAgency.value.name,
             text: "Ngồi hàng ghế " + selectAgency.value.seat_code,
@@ -421,7 +424,7 @@ onMounted(() => {
                                     <ul
                                         v-if="
                                             dataSearchName.length > 0 &&
-                                            isShowDataSearch
+                                            isShowDataSearch && valueSearch
                                         "
                                         class="flex flex-col rounded-md bg-white shadow-md py-2 px-3 absolute top-[110%] left-0 w-full max-h-80 overflow-y-auto"
                                     >
@@ -437,13 +440,19 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <button
-                                class="px-[43px] h-full rounded-md py-3 text-lg bg-[#962400] text-white hover:opacity-80"
-                                @click="handleSearchSeat"
-                                type="button"
-                            >
-                                Tìm kiếm
-                            </button>
+                            <div>
+                                <button
+                                    class="px-[43px] h-full rounded-md py-3 text-lg bg-[#962400] text-white hover:opacity-80 inline-flex items-center gap-2"
+                                    @click="handleSearchSeat"
+                                    type="button"
+                                >
+                                    <Icon
+                                        v-if="loading"
+                                        name="eos-icons:loading"
+                                    />
+                                    Tìm kiếm
+                                </button>
+                            </div>
                         </form>
 
                         <SeatingChart :seat-id="selectedSeatDara" />

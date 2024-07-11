@@ -1,12 +1,14 @@
 <template>
-    <div :class="seatClass" class="grid grid-cols-3" @click="selectSeat">
+    <div :class="seatClass" class="grid grid-cols-3">
         <div v-for="col in column" :key="col">
+            <p class="text-center text-sm">{{ col }}</p>
             <button
                 v-if="col"
-                class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80"
+                class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF]"
                 :data-="col"
                 :class="[
-                    listSteatSelected?.includes(col) || selectSeatId == col
+                    listSteatSelected?.includes(col) ||
+                    selectSeatId?.seat_code == col
                         ? 'bg-amber-400'
                         : 'bg-red-500',
                     {
@@ -17,7 +19,7 @@
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
             >
-                <p class="whitespace-nowrap text-xs text-white">Đại biểu</p>
+                <p class="whitespace-nowrap text-xs text-white"></p>
             </button>
 
             <div
@@ -46,18 +48,19 @@
                     >
                         <IconClose />
                     </button>
-                    <div class="bg-white w-2/3 h-56 py-10 px-20">
+                    <div class="bg-white w-full md:w-2/3 h-56 py-10 px-3 md:px-20">
                         <input
                             ref="inputName"
                             v-model="valueName"
-                            class="w-full outline-none text-3xl text-[#8B8B8B] mb-10"
+                            class="w-full outline-none text-lg md:text-3xl text-[#8B8B8B] mb-10"
                             disabled
                             type="text"
                         />
                         <button
-                            class="px-[43px] inline-block rounded-md py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                            class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
                             @click="handleRegisterSeat"
                         >
+                            <Icon v-if="loading" name="eos-icons:loading" />
                             Đặt chỗ
                         </button>
                     </div>
@@ -68,6 +71,8 @@
 </template>
 
 <script setup>
+const { $swal } = useNuxtApp();
+
 const props = defineProps([
     "id",
     "row",
@@ -83,6 +88,7 @@ const listSteatSelected = ref([]);
 const infoDelegate = ref(null);
 const isShowModal = ref(false);
 const valueName = ref("");
+const loading = ref(false);
 
 const seatClass = computed(() => {
     return "seat";
@@ -93,11 +99,6 @@ const seatStyle = computed(() => {
         ...props.styleRow,
     };
 });
-
-const selectSeat = () => {
-    // handle seat selection if needed
-    console.log(`Seat ${props.id} selected`);
-};
 
 const handleSelectSeat = (value) => {
     isShowModal.value = true;
@@ -110,9 +111,16 @@ const closeModal = () => {
 };
 
 const handleRegisterSeat = () => {
-    listSteatSelected.value.push(infoDelegate.value.value.toString());
-    setStorage("seats_selected", listSteatSelected.value);
-    closeModal();
+    loading.value = true;
+    setTimeout(() => {
+        listSteatSelected.value.push(infoDelegate?.value?.seat_code.toString());
+        setStorage("seats_selected", listSteatSelected.value);
+        loading.value = false;
+        closeModal();
+        $swal.fire({
+            title: "Đặt ghế thành công!",
+        });
+    }, 1000);
 };
 
 onMounted(() => {
