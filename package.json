@@ -13,6 +13,7 @@
     "@nuxt/icon": "^1.0.0",
     "nuxt": "^3.12.3",
     "nuxt-swiper": "^1.2.2",
+    "sweetalert2": "^11.12.2",
     "vue": "latest"
   },
   "devDependencies": {

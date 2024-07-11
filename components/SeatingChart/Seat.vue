@@ -1,18 +1,30 @@
 <template>
     <div :class="seatClass" class="grid grid-cols-3" @click="selectSeat">
-        <div
-            v-for="col in column"
-            :key="col"
-            class="px-4 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80"
-            :class="[
-                listSteatSelected?.includes(col) || selectSeatId == col
-                    ? 'bg-amber-400'
-                    : 'bg-red-500',
-            ]"
-            :style="seatStyle"
-            @click="handleSelectSeat(col)"
-        >
-            <p class="whitespace-nowrap text-xs text-white">Đại biểu</p>
+        <div v-for="col in column" :key="col">
+            <button
+                v-if="col"
+                class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80"
+                :data-="col"
+                :class="[
+                    listSteatSelected?.includes(col) || selectSeatId == col
+                        ? 'bg-amber-400'
+                        : 'bg-red-500',
+                    {
+                        'cursor-not-allowed': listSteatSelected?.includes(col),
+                    },
+                ]"
+                :disabled="listSteatSelected?.includes(col)"
+                :style="seatStyle"
+                @click="handleSelectSeat(col)"
+            >
+                <p class="whitespace-nowrap text-xs text-white">Đại biểu</p>
+            </button>
+
+            <div
+                v-else
+                class="w-full flex-shrink-0 py-6"
+                :style="seatStyle"
+            ></div>
         </div>
 
         <Transition
@@ -101,11 +113,10 @@ const handleRegisterSeat = () => {
     listSteatSelected.value.push(infoDelegate.value.value.toString());
     setStorage("seats_selected", listSteatSelected.value);
     closeModal();
-}
+};
 
 onMounted(() => {
     listSteatSelected.value = getStorage("seats_selected") || [];
-    console.log(listSteatSelected.value);
 });
 </script>
 

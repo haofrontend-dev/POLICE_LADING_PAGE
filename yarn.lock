@@ -5188,6 +5188,11 @@ svgo@^3.3.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
+sweetalert2@^11.12.2:
+  version "11.12.2"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.12.2.tgz#3430b6bd66f732ae6c36b19ff965da5b01b1e3fd"
+  integrity sha512-Rwv5iRYlApkDSXeX22aLhhWMlWPzFxnNBVLZajkFKYhaVEfQkMOPQQRhBtSFxKBPCoko9U3SccWm9hI4o3Id0Q==
+
 swiper@^10.2.0:
   version "10.3.1"
   resolved "https://registry.yarnpkg.com/swiper/-/swiper-10.3.1.tgz#4d19d7e9d0bd184c30accf2c1b180cfe41b9f4af"
