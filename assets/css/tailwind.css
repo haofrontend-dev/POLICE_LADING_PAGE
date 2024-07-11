@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Nếu cần điều chỉnh kích thước và khoảng cách */
+    padding-right: 30px; /* Để tạo chỗ cho biểu tượng */
+    background-image: url('/icon/down.svg');
+    background-repeat: no-repeat;
+    background-position: right center; /* Điều chỉnh vị trí của biểu tượng */
+    /* Nếu cần điều chỉnh kiểu dáng và màu sắc khác */
+    background-color: white; /* Đảm bảo nền của select là màu trắng */
+    border: 1px solid #ACACAC;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột qua */
+    /* Các thuộc tính khác tùy chỉnh theo nhu cầu */
+}
