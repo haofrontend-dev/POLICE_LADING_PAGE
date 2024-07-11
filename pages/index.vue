@@ -150,6 +150,7 @@ onMounted(() => {
             <div class="md:container mx-auto">
                 <div class="px-4 sm:px-[100px] xl:px-[255px]">
                     <NuxtLink
+                        to="/trung-doan-cscd-trung-bo-10-nam-xay-dung-chien-dau-va-phat-trien"
                         class="block w-full py-[14px] px-[14px] md:px-[18px] bg-[#CE7A58] text-white hover:opacity-80 rounded-[15px] shadow-md"
                     >
                         <span

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     compatibilityDate: "2024-04-03",
     devtools: { enabled: true },
-    modules: ["@nuxtjs/tailwindcss", "nuxt-swiper", "@nuxt/icon"],
+    modules: ["@nuxtjs/tailwindcss", "nuxt-swiper", "@nuxt/icon", "@nuxt/content"],
     css: ["@/assets/css/tailwind.css"],
     app: {
         head: {

@@ -5,7 +5,7 @@
             <button
                 v-if="col"
                 class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF]"
-                :data-="col"
+                :data-id="col"
                 :class="[
                     listSteatSelected?.includes(col) ||
                     selectSeatId?.seat_code == col
