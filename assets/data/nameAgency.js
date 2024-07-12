@@ -1,4 +1,4 @@
-export default [
+const data = [
     {
         name: "Thiếu tướng Lê Ngọc Châu - Tư lệnh Cảnh sát cơ động",
         value: 1,
@@ -44,7 +44,6 @@ export default [
         value: 9,
         seat_code: "A103",
     },
-
     {
         name: "Đại tá Lê Minh Đức - Nguyên Cục trưởng C22",
         value: 10,
@@ -105,7 +104,6 @@ export default [
         value: 21,
         seat_code: "A213",
     },
-
     {
         name: "Đại diện Lãnh đạo Phòng 1 - K02",
         value: 22,
@@ -177,62 +175,62 @@ export default [
         seat_code: "B203",
     },
     {
-        name: "Đại diện Lãnh đạo Công an Tỉnh",
+        name: "Đại diện Lãnh đạo Công an Tỉnh Quảng Trị",
         value: 36,
         seat_code: "A116",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PX01",
+        name: "Đại diện Lãnh đạo Phòng PX01 Tỉnh Quảng Trị",
         value: 37,
         seat_code: "A304",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PK02",
+        name: "Đại diện Lãnh đạo Phòng PK02 Tỉnh Quảng Trị",
         value: 38,
         seat_code: "A308",
     },
     {
-        name: "Đại diện Lãnh đạo Công an Tỉnh",
+        name: "Đại diện Lãnh đạo Công an Tỉnh Thừa Thiên Huế",
         value: 39,
         seat_code: "A114",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PX01",
+        name: "Đại diện Lãnh đạo Phòng PX01 Tỉnh Thừa Thiên Huế",
         value: 40,
         seat_code: "A305",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PK02",
+        name: "Đại diện Lãnh đạo Phòng PK02 Tỉnh Thừa Thiên Huế",
         value: 41,
         seat_code: "A309",
     },
     {
-        name: "Đại diện Lãnh đạo Công an Thành phố",
+        name: "Đại diện Lãnh đạo Công an Thành phố Đà Nẵng",
         value: 42,
         seat_code: "A113",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PX01",
+        name: "Đại diện Lãnh đạo Phòng PX01 Thành phố Đà Nẵng",
         value: 43,
         seat_code: "A306",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PK02",
+        name: "Đại diện Lãnh đạo Phòng PK02 Thành phố Đà Nẵng",
         value: 44,
         seat_code: "A310",
     },
     {
-        name: "Đại diện Lãnh đạo Công an Tỉnh",
+        name: "Đại diện Lãnh đạo Công an Tỉnh Quảng Nam",
         value: 45,
         seat_code: "A111",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PX01",
+        name: "Đại diện Lãnh đạo Phòng PX01 Tỉnh Quảng Nam",
         value: 46,
         seat_code: "A307",
     },
     {
-        name: "Đại diện Lãnh đạo Phòng PK02",
+        name: "Đại diện Lãnh đạo Phòng PK02 Tỉnh Quảng Nam",
         value: 47,
         seat_code: "A310",
     },
@@ -256,6 +254,7 @@ export default [
         value: 51,
         seat_code: "A201",
     },
+
     {
         name: "Đại diện Lãnh đạo Phòng 6",
         value: 52,
@@ -312,7 +311,7 @@ export default [
         seat_code: "A217",
     },
     {
-        name: "Đại diện Lãnh đạo Văn phòng UBND",
+        name: "Đại diện Lãnh đạo Văn phòng UBND tỉnh Quảng Nam",
         value: 63,
         seat_code: "A218",
     },
@@ -382,3 +381,6 @@ export default [
         seat_code: "A313",
     },
 ]
+
+export default data
+

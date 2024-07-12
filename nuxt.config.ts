@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         "nuxt-swiper",
         "@nuxt/icon",
         "@nuxt/content",
-        "@nuxtjs/supabase"
+        "@nuxt/image",
     ],
     css: ["@/assets/css/tailwind.css"],
     app: {
