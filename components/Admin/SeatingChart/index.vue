@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mt-4">
-                    <SeatingChartSeat
+                    <AdminSeatingChartSeat
                         v-for="(seat, index) in leftSeats"
                         :key="index"
                         :id="seat.id"
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="grid grid-cols-7 gap-4 mt-4">
-                    <SeatingChartSeat
+                    <AdminSeatingChartSeat
                         v-for="(seat, index) in middleSeats"
                         :key="index"
                         :id="seat.id"
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="w-11/12 grid gap-4 mt-4 grid-cols-6 mx-auto">
-                    <SeatingChartSeat
+                    <AdminSeatingChartSeat
                         v-for="(seat, index) in middleBottomSeats"
                         :key="index"
                         :id="seat.id"
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mt-4">
-                    <SeatingChartSeat
+                    <AdminSeatingChartSeat
                         v-for="(seat, index) in rightSeats"
                         :key="index"
                         :id="seat.id"

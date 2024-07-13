@@ -1,8 +1,22 @@
 <script setup>
+import { debounce } from "lodash";
 import units from "~/assets/data/unit.js";
-import nameAgency from "~/assets/data/nameAgency.js";
 
 const { $swal } = useNuxtApp();
+const client = useSupabaseClient();
+
+const usersState = useState("users");
+const seatedState = useState("seats_selected");
+
+await callOnce(async () => {
+    const { data } = await client.from("users").select("*");
+    usersState.value = data;
+});
+
+await callOnce(async () => {
+    const { data } = await client.from("user_seats").select("*");
+    seatedState.value = data || [];
+});
 
 const video = ref(null);
 const isShowPlay = ref(true);
@@ -27,18 +41,27 @@ const unitOptions = computed(() => {
 });
 
 const agenciesOptions = computed(() => {
-    return unitOptions.value?.find((unit) => {
-        return unit.value === selectUnit.value;
-    })?.children;
+    return usersState.value?.filter((unit) => {
+        return unit?.unit_id === selectUnit.value;
+    });
 });
 
-const handleSearch = (event) => {
+const handleSearch = debounce(async (event) => {
     isShowDataSearch.value = true;
-    valueSearch.value = event.target.value;
-    dataSearchName.value = nameAgency.filter((item) =>
-        item.name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-};
+    try {
+        const { data, error } = await client
+            .from("users")
+            .select("*")
+            .ilike("name", `%${event.target.value.toLowerCase()}%`);
+
+        if (error) {
+            console.error(error);
+        }
+        dataSearchName.value = data;
+    } catch (error) {
+        console.error(error);
+    }
+}, 500);
 
 const handleFocusInput = () => {
     if (inputSearch.value) {
@@ -107,13 +130,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="mt-[26px]">
-        <section class="py-14 bg-[#FFF9C0]">
+    <div class="mt-[18px]">
+        <section class="py-8 bg-[#FFF9C0]">
             <div
                 class="w-full bg-[#D71920] px-[30px] uppercase flex relative overflow-x-hidden"
             >
                 <div
-                    class="text-center animate-marquee py-[15px] text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
+                    class="text-center animate-marquee py-5 text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
@@ -122,7 +145,7 @@ onMounted(() => {
                 </div>
 
                 <div
-                    class="absolute rop-0 animate-marquee2 py-[15px] text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
+                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
@@ -197,7 +220,7 @@ onMounted(() => {
         </section>
 
         <section class="my-[80px] md:my-[160px]">
-            <div class="md:container mx-auto">
+            <div class="md:max-w-[1440px] mx-auto">
                 <h2
                     class="uppercase text-center lg:text-[20px] font-bold text-[#962400] mb-6 md:mb-14"
                 >
@@ -392,6 +415,7 @@ onMounted(() => {
                                             {{ angency.name }}
                                         </option>
                                     </select>
+                                    {{ console.log(agenciesOptions) }}
                                     <span
                                         class="absolute right-4 top-1/2 -translate-y-1/2"
                                     >
@@ -407,7 +431,7 @@ onMounted(() => {
                                 >
                                     <input
                                         ref="inputSearch"
-                                        :value="valueSearch"
+                                        v-model="valueSearch"
                                         class="md:w-1/2 outline-none text-lg text-[#8B8B8B]"
                                         type="text"
                                         placeholder="Tìm kiếm theo tên cơ quan, tổ chức cá nhân... "
@@ -425,7 +449,8 @@ onMounted(() => {
                                     <ul
                                         v-if="
                                             dataSearchName.length > 0 &&
-                                            isShowDataSearch && valueSearch
+                                            isShowDataSearch &&
+                                            valueSearch
                                         "
                                         class="flex flex-col rounded-md bg-white shadow-md py-2 px-3 absolute top-[110%] left-0 w-full max-h-80 overflow-y-auto"
                                     >

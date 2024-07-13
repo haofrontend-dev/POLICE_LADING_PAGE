@@ -26,6 +26,7 @@ const fullNameValue = ref("");
 const genderValue = ref("");
 const rankValue = ref("");
 const positionValue = ref("");
+const seatCodeSelect = ref(null);
 
 const seatClass = computed(() => {
     return "seat";
@@ -39,8 +40,9 @@ const seatStyle = computed(() => {
 
 const handleSelectSeat = (value) => {
     isShowModal.value = true;
+    seatCodeSelect.value = value;
     infoDelegate.value = getNameSeat(value, usersState.value);
-    valueName.value = infoDelegate.value.name;
+    valueName.value = infoDelegate.value?.name;
 };
 
 const closeModal = () => {
@@ -75,14 +77,9 @@ const createUserSeat = async (data_user) => {
 };
 
 const handleRegisterSeat = async (user_delegate) => {
+    loading.value = true;
     if (user_delegate?.full_name) {
         await createUserSeat(user_delegate);
-        const { data: userSeated } = await client
-            .from("user_seats")
-            .select("*");
-        seatedState.value = userSeated || [];
-        closeModal();
-        return;
     } else {
         if (
             !fullNameValue.value ||
@@ -97,12 +94,83 @@ const handleRegisterSeat = async (user_delegate) => {
         } else {
             const { data, error } = await client
                 .from("users")
-                .update({})
-                .eq("id", user_delegate?.id);
-            console.log(data);
+                .update({
+                    full_name: fullNameValue.value,
+                    gender: genderValue.value,
+                    rank: rankValue.value,
+                    position: positionValue.value,
+                })
+                .eq("id", user_delegate?.id)
+                .select("*");
+
+            console.log(error);
+
+            if (data) {
+                await createUserSeat(data[0]);
+                infoDelegate.value = data[0];
+            }
+
+            if (error) {
+                const { data, error: errorCreate } = await client
+                    .from("users")
+                    .insert({
+                        full_name: fullNameValue.value,
+                        gender: genderValue.value,
+                        rank: rankValue.value,
+                        position: positionValue.value,
+                        seat_code: seatCodeSelect.value,
+                        name: `${positionValue.value} ${fullNameValue.value}`,
+                    })
+                    .select("*");
+                if (errorCreate) {
+                    $swal.fire({
+                        title: "Đặt ghế thất bại!",
+                        icon: "error",
+                    });
+                }
+                if (data) {
+                    await createUserSeat(data[0]);
+                    infoDelegate.value = data[0];
+                }
+            }
         }
     }
-    loading.value = false;
+
+    const { data: userSeated } = await client.from("user_seats").select("*");
+    seatedState.value = userSeated || [];
+    closeModal();
+    return;
+};
+
+const handleDeleteSeat = async (user_delegate) => {
+    try {
+        loading.value = true;
+        const { error } = await client
+            .from("user_seats")
+            .delete()
+            .eq("id_user", user_delegate?.id);
+        if (error) {
+            throw error;
+        }
+
+        const { data: userSeated } = await client
+            .from("user_seats")
+            .select("*");
+        seatedState.value = userSeated || [];
+        closeModal();
+
+        $swal.fire({
+            title: "Hủy ghế thành công!",
+            icon: "success",
+        });
+    } catch (error) {
+        $swal.fire({
+            title: "Hủy ghế thất bại!",
+            icon: "error",
+        });
+    } finally {
+        loading.value = false;
+    }
 };
 </script>
 
@@ -112,22 +180,24 @@ const handleRegisterSeat = async (user_delegate) => {
             <p class="text-center text-sm">{{ col }}</p>
             <button
                 v-if="col"
-                class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF]"
+                class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF] relative"
                 :data-id="col"
                 :class="[
                     isHasUserSeat(col, seatedState) ||
                     selectSeatId?.seat_code == col
                         ? 'bg-amber-400'
                         : 'bg-red-500',
-                    isHasUserSeat(col, seatedState)
-                        ? 'cursor-default'
-                        : 'cursor-pointer',
                 ]"
-                :disabled="isHasUserSeat(col, seatedState)"
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
             >
-                <p class="whitespace-nowrap text-xs text-white"></p>
+                <p class="whitespace-nowrap absolute top-0 right-0">
+                    <Icon
+                        v-if="isHasUserSeat(col, seatedState)"
+                        name="lets-icons:check-fill"
+                        class="text-xl text-green-400"
+                    />
+                </p>
             </button>
 
             <div
@@ -168,7 +238,19 @@ const handleRegisterSeat = async (user_delegate) => {
                             />
 
                             <button
+                                v-if="
+                                    isHasUserSeat(seatCodeSelect, seatedState)
+                                "
                                 class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                @click="handleDeleteSeat(infoDelegate)"
+                            >
+                                <Icon v-if="loading" name="eos-icons:loading" />
+                                Hủy chỗ
+                            </button>
+
+                            <button
+                                v-else
+                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
@@ -177,7 +259,7 @@ const handleRegisterSeat = async (user_delegate) => {
                         </div>
 
                         <!-- START FORM DELEGATE -->
-                        <form
+                        <div
                             v-else
                             class="grid grid-cols-1 lg:grid-cols-2 gap-[20px]"
                         >
@@ -194,7 +276,7 @@ const handleRegisterSeat = async (user_delegate) => {
                                         v-model="fullNameValue"
                                         class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                         type="text"
-                                        placeholder=" "
+                                        placeholder="Họ và tên"
                                     />
                                 </div>
                             </div>
@@ -215,13 +297,13 @@ const handleRegisterSeat = async (user_delegate) => {
                                             Vui lòng chọn...
                                         </option>
                                         <option
-                                            value="0"
+                                            value="1"
                                             selected
                                             class="text-black"
                                         >
                                             Nam
                                         </option>
-                                        <option value="1" class="text-black">
+                                        <option value="0" class="text-black">
                                             Nữ
                                         </option>
                                     </select>
@@ -246,7 +328,7 @@ const handleRegisterSeat = async (user_delegate) => {
                                         v-model="rankValue"
                                         class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                         type="text"
-                                        placeholder=" "
+                                        placeholder="Vui lòng nhập cấp bật"
                                     />
                                 </div>
                             </div>
@@ -264,14 +346,14 @@ const handleRegisterSeat = async (user_delegate) => {
                                         v-model="positionValue"
                                         class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                         type="text"
-                                        placeholder=" "
+                                        placeholder="Vui lòng nhập chức vụ"
                                     />
                                 </div>
                             </div>
 
                             <div class="lg:col-span-2">
                                 <button
-                                    class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                    class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
                                     @click="handleRegisterSeat(infoDelegate)"
                                 >
                                     <Icon
@@ -281,7 +363,7 @@ const handleRegisterSeat = async (user_delegate) => {
                                     Đặt chỗ
                                 </button>
                             </div>
-                        </form>
+                        </div>
                         <!-- END FORM DELEGATE -->
                     </div>
                 </div>
