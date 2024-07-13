@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import { debounce } from "lodash";
+import _ from "lodash";
 import units from "~/assets/data/unit.js";
 
 definePageMeta({
@@ -204,7 +204,7 @@ const agenciesOptions = computed(() => {
     });
 });
 
-const handleSearch = debounce(async (event) => {
+const handleSearch = _.debounce(async (event) => {
     isShowDataSearch.value = true;
     try {
         const { data, error } = await client
