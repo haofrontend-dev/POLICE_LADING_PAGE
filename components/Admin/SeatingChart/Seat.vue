@@ -103,8 +103,6 @@ const handleRegisterSeat = async (user_delegate) => {
                 .eq("id", user_delegate?.id)
                 .select("*");
 
-            console.log(error);
-
             if (data) {
                 await createUserSeat(data[0]);
                 infoDelegate.value = data[0];

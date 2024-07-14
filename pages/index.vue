@@ -136,20 +136,20 @@ onMounted(() => {
                 class="w-full bg-[#D71920] px-[30px] uppercase flex relative overflow-x-hidden"
             >
                 <div
-                    class="text-center animate-marquee py-5 text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
+                    class="text-center animate-marquee py-5 text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
-                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG</span
+                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ TRUNG BỘ (25/07/2024 - 25/07/2024)</span
                     >
                 </div>
 
                 <div
-                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] overflow-hidden whitespace-nowrap"
+                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700]  whitespace-nowrap flex-shrink-0"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
-                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG</span
+                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ TRUNG BỘ (25/07/2024 - 25/07/2024)</span
                     >
                 </div>
             </div>

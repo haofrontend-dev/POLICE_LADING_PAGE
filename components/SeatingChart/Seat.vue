@@ -26,6 +26,7 @@ const fullNameValue = ref("");
 const genderValue = ref("");
 const rankValue = ref("");
 const positionValue = ref("");
+const seatCodeSelect = ref(null);
 
 const seatClass = computed(() => {
     return "seat";
@@ -39,6 +40,7 @@ const seatStyle = computed(() => {
 
 const handleSelectSeat = (value) => {
     isShowModal.value = true;
+    seatCodeSelect.value = value;
     infoDelegate.value = getNameSeat(value, usersState.value);
     valueName.value = infoDelegate.value.name;
 };
@@ -97,12 +99,77 @@ const handleRegisterSeat = async (user_delegate) => {
         } else {
             const { data, error } = await client
                 .from("users")
-                .update({})
-                .eq("id", user_delegate?.id);
-            console.log(data);
+                .update({
+                    full_name: fullNameValue.value,
+                    gender: genderValue.value,
+                    rank: rankValue.value,
+                    position: positionValue.value,
+                })
+                .eq("id", user_delegate?.id)
+                .select("*");
+
+            if (data) {
+                await createUserSeat(data[0]);
+                infoDelegate.value = data[0];
+            }
+
+            if (error) {
+                const { data, error: errorCreate } = await client
+                    .from("users")
+                    .insert({
+                        full_name: fullNameValue.value,
+                        gender: genderValue.value,
+                        rank: rankValue.value,
+                        position: positionValue.value,
+                        seat_code: seatCodeSelect.value,
+                        name: `${positionValue.value} ${fullNameValue.value}`,
+                    })
+                    .select("*");
+                if (errorCreate) {
+                    $swal.fire({
+                        title: "Đặt ghế thất bại!",
+                        icon: "error",
+                    });
+                }
+                if (data) {
+                    await createUserSeat(data[0]);
+                    infoDelegate.value = data[0];
+                }
+            }
         }
     }
     loading.value = false;
+};
+
+const handleDeleteSeat = async (user_delegate) => {
+    try {
+        loading.value = true;
+        const { error } = await client
+            .from("user_seats")
+            .delete()
+            .eq("id_user", user_delegate?.id);
+        if (error) {
+            throw error;
+        }
+
+        const { data: userSeated } = await client
+            .from("user_seats")
+            .select("*");
+        seatedState.value = userSeated || [];
+        closeModal();
+
+        $swal.fire({
+            title: "Hủy ghế thành công!",
+            icon: "success",
+        });
+    } catch (error) {
+        $swal.fire({
+            title: "Hủy ghế thất bại!",
+            icon: "error",
+        });
+    } finally {
+        loading.value = false;
+    }
 };
 </script>
 
@@ -119,11 +186,7 @@ const handleRegisterSeat = async (user_delegate) => {
                     selectSeatId?.seat_code == col
                         ? 'bg-amber-400'
                         : 'bg-red-500',
-                    isHasUserSeat(col, seatedState)
-                        ? 'cursor-default'
-                        : 'cursor-pointer',
                 ]"
-                :disabled="isHasUserSeat(col, seatedState)"
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
             >
@@ -166,9 +229,20 @@ const handleRegisterSeat = async (user_delegate) => {
                                 class="w-full outline-none text-sm lg:text-lg md:text-3xl text-[#8B8B8B] mb-10"
                                 type="text"
                             />
+                            <button
+                                v-if="
+                                    isHasUserSeat(seatCodeSelect, seatedState)
+                                "
+                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                @click="handleDeleteSeat(infoDelegate)"
+                            >
+                                <Icon v-if="loading" name="eos-icons:loading" />
+                                Hủy chỗ
+                            </button>
 
                             <button
-                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                v-else
+                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />

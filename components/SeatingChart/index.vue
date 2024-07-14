@@ -23,7 +23,6 @@
                 <div class="mt-20">
                     <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
                         <span class="text-[#962400]">Khán đài C </span>
-                        <span>- 16 bàn 1.2M - 20 chỗ</span>
                     </div>
                 </div>
             </div>
@@ -61,7 +60,6 @@
                 <div class="mt-20">
                     <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
                         <span class="text-[#962400]">Khán đài A </span>
-                        <span>- 20 bàn đài đơn vị - 58 chỗ</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +85,6 @@
                 <div class="mt-20">
                     <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
                         <span class="text-[#962400]">Khán đài B </span>
-                        <span>- 16 bàn 1.2M - 20 chỗ</span>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 
 <script setup>
 const client = useSupabaseClient();
+const router = useRouter();
 
 const authState = useState("auth");
 const logUserOut = async () => {
@@ -16,14 +17,19 @@ const logUserOut = async () => {
 
 <template>
     <header
-        class="w-full fixed top-0 left-0 right-0 h-auto z-[10] bg-[#F8E6A6] shadow-md lg:pl-[300px] lg:pr-[300px]"
+        class="w-full fixed top-0 left-0 right-0 h-auto z-[10] bg-[#F8E6A6] shadow-md lg:pl-[300px] lg:pr-[300px] px-3"
     >
         <div class="flex justify-between h-full py-4">
-            <NuxtLink to="/admin" class="text-2xl font-bold text-[#962400]"
-                >Admin</NuxtLink
+            <button to="/admin" class="text-2xl font-bold text-[#962400]" @click="navigateTo('/admin')">
+               Admin</button
             >
+
+            <nav class="flex items-center gap-3 text-[#962400] font-semibold">
+                <NuxtLink to="/admin">Chỗ ngồi</NuxtLink>
+                <NuxtLink to="/admin/users">Danh sách</NuxtLink>
+            </nav>
             <button class="text-lg font-semibold inline-flex items-center gap-3 hover:text-[#962400]/80" @click="logUserOut">
-                Logout 
+                <span class=" hidden lg:inline-block">Logout </span>
                 <Icon name="material-symbols:logout" />
             </button>
         </div>
@@ -31,4 +37,8 @@ const logUserOut = async () => {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.router-link-active.router-link-exact-active {
+    text-decoration: underline;
+}
+</style>
