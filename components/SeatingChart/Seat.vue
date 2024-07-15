@@ -171,6 +171,7 @@ const handleDeleteSeat = async (user_delegate) => {
         loading.value = false;
     }
 };
+
 </script>
 
 <template>
@@ -181,17 +182,16 @@ const handleDeleteSeat = async (user_delegate) => {
                 v-if="col"
                 class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF]"
                 :data-id="col"
+                :id="col"
                 :class="[
-                    isHasUserSeat(col, seatedState) ||
-                    selectSeatId?.seat_code == col
+                    isHasUserSeat(col, seatedState)
                         ? 'bg-amber-400'
                         : 'bg-red-500',
+                    selectSeatId?.seat_code == col ? 'blink !bg-green-500' : '',
                 ]"
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
-            >
-                <p class="whitespace-nowrap text-xs text-white"></p>
-            </button>
+            ></button>
 
             <div
                 v-else
@@ -370,6 +370,24 @@ const handleDeleteSeat = async (user_delegate) => {
     box-sizing: border-box;
     margin-bottom: 16px;
 }
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
 .seat-yellow {
     background-color: yellow;
 }

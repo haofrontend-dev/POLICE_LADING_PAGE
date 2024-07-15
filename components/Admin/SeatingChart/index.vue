@@ -21,7 +21,9 @@
                 </div>
 
                 <div class="mt-20">
-                    <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
+                    <div
+                        class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold"
+                    >
                         <span class="text-[#962400]">Khán đài C </span>
                     </div>
                 </div>
@@ -58,7 +60,9 @@
                 </div>
 
                 <div class="mt-20">
-                    <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
+                    <div
+                        class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold"
+                    >
                         <span class="text-[#962400]">Khán đài A </span>
                     </div>
                 </div>
@@ -83,7 +87,9 @@
                 </div>
 
                 <div class="mt-20">
-                    <div class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold">
+                    <div
+                        class="border border-gray-500 px-4 py-2 uppercase text-base text-center md:text-lg font-semibold"
+                    >
                         <span class="text-[#962400]">Khán đài B </span>
                     </div>
                 </div>
@@ -94,14 +100,17 @@
 
 <script setup>
 const props = defineProps({
-    seatId: String,
+    seatId: {
+        type: Object,
+        default: () => ({}),
+    },
 });
 
 const leftSeats = ref([
     { id: "C301", row: 0, column: ["C306", "C305", "C304"], color: "yellow" },
     { id: "C302", row: 0, column: ["C303", "C302", "C301"], color: "yellow" },
     { id: "C201", row: 0, column: ["C206", "C205", "C204"], color: "yellow" },
-    { id: "C202", row: 0, column: ["C203", "C202", "C201",], color: "yellow" },
+    { id: "C202", row: 0, column: ["C203", "C202", "C201"], color: "yellow" },
     { id: "C101", row: 0, column: ["C106", "C105", "C104"], color: "yellow" },
     { id: "C102", row: 0, column: ["C103", "C102", "C101"], color: "yellow" },
 ]);
@@ -139,6 +148,29 @@ const middleBottomSeats = ref([
     { id: "A105", row: 0, column: ["A106", "A105", "A104"], color: "yellow" },
     { id: "A106", row: 0, column: ["A103", "A102", "A101"], color: "yellow" },
 ]);
+
+const scrollIntoViewHorizontally = (container, child) => {
+    const child_offsetRight = child.offsetLeft + child.offsetWidth;
+    const container_scrollRight = container.scrollLeft + container.offsetWidth;
+    if (container.scrollLeft > child.offsetLeft) {
+        container.scrollLeft = child.offsetLeft;
+    } else if (container_scrollRight < child_offsetRight) {
+        container.scrollLeft += child_offsetRight - container_scrollRight;
+    }
+};
+
+watch(
+    () => props.seatId,
+    (newValue) => {
+        if (newValue) {
+            const seatElement = document.getElementById(newValue?.seat_code);
+            if (seatElement) {
+                const parentSeatElement = document.getElementById("seating");
+                scrollIntoViewHorizontally(parentSeatElement, seatElement);
+            }
+        }
+    }
+);
 </script>
 
 <style lang="scss" scoped></style>

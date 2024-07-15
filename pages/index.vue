@@ -415,7 +415,6 @@ onMounted(() => {
                                             {{ angency.name }}
                                         </option>
                                     </select>
-                                    {{ console.log(agenciesOptions) }}
                                     <span
                                         class="absolute right-4 top-1/2 -translate-y-1/2"
                                     >
