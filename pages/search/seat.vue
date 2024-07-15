@@ -173,7 +173,9 @@
                             class="bg-white w-full lg:w-2/3 h-fit py-10 mx-3 lg:mx-20 px-4"
                         >
                             <div v-if="selectAgency?.full_name">
-                                <p class="w-full outline-none text-sm lg:text-lg md:text-3xl text-[#8B8B8B] mb-10">
+                                <p
+                                    class="w-full outline-none text-sm lg:text-lg md:text-3xl text-[#8B8B8B] mb-10"
+                                >
                                     {{ selectAgency?.name }}
                                 </p>
                                 <button
@@ -210,11 +212,12 @@
                             <form
                                 v-else
                                 class="grid grid-cols-1 lg:grid-cols-2 gap-[20px]"
+                                @submit.prevent="handleRegisterSeat(selectAgency)"
                             >
                                 <div>
                                     <label
                                         for="countries"
-                                        class="block mb-2 text-lg text-[#962400] font-bold"
+                                        class="block mb-2 md:text-lg text-[#962400] font-bold"
                                     >
                                         Họ và tên
                                     </label>
@@ -222,9 +225,9 @@
                                         <input
                                             ref="inputSearch"
                                             v-model="fullNameValue"
-                                            class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                            class="block text-[#8B8B8B] w-full py-2 md:py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                             type="text"
-                                            placeholder=" "
+                                            placeholder="Họ và tên..."
                                         />
                                     </div>
                                 </div>
@@ -239,7 +242,7 @@
                                         <select
                                             v-model="genderValue"
                                             id="countries"
-                                            class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                            class="block text-[#8B8B8B] w-full py-2 md:py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                         >
                                             <option value="" selected>
                                                 Vui lòng chọn...
@@ -269,17 +272,17 @@
                                 <div>
                                     <label
                                         for="countries"
-                                        class="block mb-2 text-lg text-[#962400] font-bold"
+                                        class="block mb-2 md:text-lg text-[#962400] font-bold"
                                     >
-                                        Cấp bật
+                                        Cấp bậc
                                     </label>
                                     <div>
                                         <input
                                             ref="inputSearch"
                                             v-model="rankValue"
-                                            class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                            class="block text-[#8B8B8B] w-full py-2 md:py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                             type="text"
-                                            placeholder=" "
+                                            placeholder="Nhập cấp bậc"
                                         />
                                     </div>
                                 </div>
@@ -287,7 +290,7 @@
                                 <div>
                                     <label
                                         for="countries"
-                                        class="block mb-2 text-lg text-[#962400] font-bold"
+                                        class="block mb-2 md:text-lg text-[#962400] font-bold"
                                     >
                                         Chức vụ
                                     </label>
@@ -295,19 +298,35 @@
                                         <input
                                             ref="inputSearch"
                                             v-model="positionValue"
-                                            class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                            class="block text-[#8B8B8B] w-full py-2 md:py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
                                             type="text"
-                                            placeholder=" "
+                                            placeholder="Nhập chức vụ "
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label
+                                        for="countries"
+                                        class="block mb-2 md:text-lg text-[#962400] font-bold"
+                                    >
+                                        Số điện thoại
+                                    </label>
+                                    <div>
+                                        <input
+                                            ref="inputSearch"
+                                            v-model="phoneValue"
+                                            class="block text-[#8B8B8B] w-full py-2 md:py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                            type="tel"
+                                            placeholder="Nhập số điện thoại..."
+                                            maxlength="10"
                                         />
                                     </div>
                                 </div>
 
                                 <div class="lg:col-span-2">
                                     <button
-                                        class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
-                                        @click="
-                                            handleRegisterSeat(selectAgency)
-                                        "
+                                        class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#962400] text-white hover:opacity-80"
                                     >
                                         <Icon
                                             v-if="loading"
@@ -338,7 +357,7 @@ const { $swal } = useNuxtApp();
 const client = useSupabaseClient();
 
 const usersState = useState("users");
-const seatedState = useState("seats_selected")
+const seatedState = useState("seats_selected");
 
 await callOnce(async () => {
     const { data } = await client.from("users").select("*");
@@ -365,6 +384,7 @@ const fullNameValue = ref("");
 const genderValue = ref("");
 const rankValue = ref("");
 const positionValue = ref("");
+const phoneValue = ref("");
 
 const unitOptions = computed(() => {
     return units[selectDelegate.value]?.map((unit) => {
@@ -414,7 +434,10 @@ await callOnce(async () => {
 });
 
 const handleSearchSeat = () => {
-    if ((!selectAgency.value || !selectUnit.value || !selectDelegate.value) && !valueSearch.value) {
+    if (
+        (!selectAgency.value || !selectUnit.value || !selectDelegate.value) &&
+        !valueSearch.value
+    ) {
         $swal.fire({
             icon: "info",
             text: "Vui lòng nhập đầy đủ thông tin",
@@ -444,7 +467,7 @@ const createUserSeat = async (data_user) => {
         const { data, error } = await client.from("user_seats").insert({
             id_user: data_user.id,
             seat_code: data_user.seat_code,
-            is_seated: 1,
+            is_seated: 0,
         });
 
         if (error) {
@@ -472,8 +495,6 @@ const handleRegisterSeat = async (user_delegate) => {
             .from("user_seats")
             .select("*");
         seatedState.value = userSeated || [];
-        closeModal();
-        return;
     } else {
         if (
             !fullNameValue.value ||
@@ -493,6 +514,7 @@ const handleRegisterSeat = async (user_delegate) => {
                     gender: genderValue.value,
                     rank: rankValue.value,
                     position: positionValue.value,
+                    phone: phoneValue.value,
                 })
                 .eq("id", user_delegate?.id)
                 .select("*");
@@ -512,6 +534,7 @@ const handleRegisterSeat = async (user_delegate) => {
                         position: positionValue.value,
                         seat_code: selectAgency.value?.seat_code,
                         name: `${positionValue.value} ${fullNameValue.value}`,
+                        phone: phoneValue.value,
                     })
                     .select("*");
                 if (errorCreate) {
@@ -527,6 +550,8 @@ const handleRegisterSeat = async (user_delegate) => {
             }
         }
     }
+    closeModal();
+    resetForm();
     loading.value = false;
 };
 
@@ -561,6 +586,13 @@ const handleDeleteSeat = async (user_delegate) => {
     }
 };
 
+const resetForm = () => {
+    fullNameValue.value = "";
+    genderValue.value = "";
+    rankValue.value = "";
+    positionValue.value = "";
+    phoneValue.value = "";
+}
 </script>
 
 <style lang="scss" scoped></style>

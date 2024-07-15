@@ -27,6 +27,9 @@ const genderValue = ref("");
 const rankValue = ref("");
 const positionValue = ref("");
 const seatCodeSelect = ref(null);
+const isModalChangeSeat = ref(false);
+const seatCodeValue = ref("");
+const loadingChangeSeat = ref(false);
 
 const seatClass = computed(() => {
     return "seat";
@@ -47,6 +50,10 @@ const handleSelectSeat = (value) => {
 
 const closeModal = () => {
     isShowModal.value = false;
+};
+
+const closeModalChangeSeat = () => {
+    isModalChangeSeat.value = false;
 };
 
 const createUserSeat = async (data_user) => {
@@ -170,6 +177,77 @@ const handleDeleteSeat = async (user_delegate) => {
         loading.value = false;
     }
 };
+
+const handleChangeSeat = async () => {
+    try {
+        loadingChangeSeat.value = true;
+        if (!seatCodeValue.value) {
+            return $swal.fire({
+                text: "Nhập vị trí!",
+                icon: "info",
+            });
+        }
+
+        // Check seat is existed
+        const { data: seatResponse, error } = await client
+            .from("seats")
+            .select("*")
+            .eq("seat_code", seatCodeValue.value);
+
+        if (!seatResponse.length || error) {
+            return $swal.fire({
+                text: "Vị trí ghế không tồn tại!",
+                icon: "error",
+            });
+        }
+
+        // Check seat is existed in user
+        const { data: userResponse } = await client
+            .from("users")
+            .select("*")
+            .eq("seat_code", seatCodeValue.value);
+
+        const userSwapped = userResponse[0];
+        await client
+            .from("users")
+            .update({
+                seat_code: seatCodeValue.value,
+            })
+            .eq("id", infoDelegate.value?.id);
+
+        if (userSwapped && userSwapped?.id !== infoDelegate.value?.id) {
+            await client
+                .from("users")
+                .update({
+                    seat_code: infoDelegate.value?.seat_code,
+                })
+                .eq("id", userSwapped?.id);
+        }
+
+        const { data: users } = await client.from("users").select("*");
+        usersState.value = users;
+
+        const { data: userSeated } = await client
+            .from("user_seats")
+            .select("*");
+        seatedState.value = userSeated || [];
+
+        closeModalChangeSeat();
+        closeModal();
+        seatCodeValue.value = "";
+        return $swal.fire({
+            text: "Thay đổi vị trí thành công!",
+            icon: "success",
+        });
+    } catch (error) {
+        return $swal.fire({
+            text: "Thay đổi vị trí thất bại!",
+            icon: "error",
+        });
+    } finally {
+        loadingChangeSeat.value = false;
+    }
+};
 </script>
 
 <template>
@@ -239,7 +317,7 @@ const handleDeleteSeat = async (user_delegate) => {
                                 v-if="
                                     isHasUserSeat(seatCodeSelect, seatedState)
                                 "
-                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
+                                class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#962400] text-white hover:opacity-80"
                                 @click="handleDeleteSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
@@ -248,11 +326,21 @@ const handleDeleteSeat = async (user_delegate) => {
 
                             <button
                                 v-else
-                                class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
+                                class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#FFC700] text-white hover:opacity-80"
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
                                 Đặt chỗ
+                            </button>
+
+                            <button
+                                v-if="
+                                    !isHasUserSeat(seatCodeSelect, seatedState)
+                                "
+                                class="px-[20px] inline-flex ml-2 items-center gap-2 rounded-md py-1 md:py-2 text-base bg-green-400 text-white hover:opacity-80"
+                                @click="isModalChangeSeat = true"
+                            >
+                                Đổi chỗ
                             </button>
                         </div>
 
@@ -351,7 +439,7 @@ const handleDeleteSeat = async (user_delegate) => {
 
                             <div class="lg:col-span-2">
                                 <button
-                                    class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
+                                    class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#FFC700] text-white hover:opacity-80"
                                     @click="handleRegisterSeat(infoDelegate)"
                                 >
                                     <Icon
@@ -360,9 +448,65 @@ const handleDeleteSeat = async (user_delegate) => {
                                     />
                                     Đặt chỗ
                                 </button>
+
+                                <button
+                                    class="px-[20px] inline-flex ml-2 items-center gap-2 rounded-md py-1 md:py-2 text-base bg-green-400 text-white hover:opacity-80"
+                                    @click="isModalChangeSeat = true"
+                                >
+                                    <Icon v-if="loadingChangeSeat" name="eos-icons:loading" />
+                                    Đổi chỗ
+                                </button>
                             </div>
                         </div>
                         <!-- END FORM DELEGATE -->
+                    </div>
+                </div>
+            </Modal>
+        </Transition>
+
+        <!-- MODEL CHANGE SEAT -->
+        <Transition
+            enter-active-class="transition duration-300 ease-out"
+            enter-from-class="transform opacity-0"
+            enter-to-class="transform opacity-100"
+            leave-active-class="transition duration-300 ease-in"
+            leave-from-class="transform opacity-100"
+            leave-to-class="transform opacity-0"
+        >
+            <Modal v-if="isModalChangeSeat" @close="closeModalChangeSeat()">
+                <div
+                    class="py-4 h-full flex items-center justify-center relative overflow-hidden"
+                    @click.self="closeModalChangeSeat"
+                >
+                    <button
+                        class="absolute top-2 right-2 w-[40px] h-[40px] rounded-full hover:bg-[#CE7A58]/20 flex justify-center items-center"
+                        @click="closeModalChangeSeat()"
+                    >
+                        <IconClose />
+                    </button>
+                    <div
+                        class="bg-white w-full md:max-w-[300px] rounded-lg h-fit py-10 mx-3 lg:mx-20 px-4"
+                    >
+                        <form @submit.prevent="">
+                            <div>
+                                <input
+                                    v-model="seatCodeValue"
+                                    class="block text-[#8B8B8B] w-full py-[13px] bg-white shadow-md border border-[#ACACAC] rounded-[10px] outline-none px-6 relative"
+                                    type="text"
+                                    placeholder="Nhập vị trí ghế"
+                                />
+                                <button
+                                    class="px-[20px] inline-flex mt-3 items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#FFC700] text-white hover:opacity-80"
+                                    @click="handleChangeSeat"
+                                >
+                                    <Icon
+                                        v-if="loadingChangeSeat"
+                                        name="eos-icons:loading"
+                                    />
+                                    Lưu
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </Modal>

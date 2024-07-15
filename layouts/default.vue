@@ -1,7 +1,7 @@
 <template>
   <div class="font-lato">
     <MainHeader />
-    <main class="mt-[279px] md:mt-[160px]">
+    <main class="mt-[216px] md:mt-[160px]">
       <slot />
     </main>
     <MainFooter />

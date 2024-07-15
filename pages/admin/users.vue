@@ -136,7 +136,7 @@ watch(data, () => {
                 </button>
             </div>
             <table
-                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-x-auto"
+                class="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-x-auto border-collapse border border-slate-500"
             >
                 <AdminTableHeader
                     :items="[
@@ -147,14 +147,24 @@ watch(data, () => {
                         },
                         {
                             id: 3,
-                            label: 'Vị trí ngồi',
+                            label: 'Số điện thoại',
                         },
                         {
                             id: 4,
-                            label: 'Checkin',
+                            label: 'Vị trí ngồi',
                         },
                         {
                             id: 5,
+                            label: 'Checkin',
+                            align: 'center',
+                        },
+                        {
+                            id: 6,
+                            label: 'Xác nhận tham gia',
+                            align: 'center',
+                        },
+                        {
+                            id: 7,
                             label: '',
                         },
                     ]"

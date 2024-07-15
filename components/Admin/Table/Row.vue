@@ -2,23 +2,35 @@
     <tr
         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
     >
-        <th
+        <td
             scope="row"
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-slate-600"
         >
             {{ item?.name }}
-        </th>
-        <td class="px-6 py-4">{{ item?.full_name }}</td>
-        <td class="px-6 py-4">{{ item?.seat_code }}</td>
-        <td class="px-6 py-4">
-            <p v-if="item?.user" class="whitespace-nowrap">
+        </td>
+        <td class="px-6 py-4 border border-slate-600">{{ item?.full_name }}</td>
+        <td class="px-6 py-4 border border-slate-600">{{ item?.phone }}</td>
+        <td class="px-6 py-4 border border-slate-600">{{ item?.seat_code }}</td>
+        <td class="px-6 py-4 border border-slate-600">
+            <p
+                v-if="item?.user && item?.user?.is_seated === 1"
+                class="whitespace-nowrap text-center"
+            >
                 <Icon
                     name="lets-icons:check-fill"
                     class="text-xl text-green-400"
                 />
             </p>
         </td>
-        <td class="px-6 py-4 text-right">
+        <td class="px-6 py-4 border border-slate-600">
+            <p
+                v-if="item?.user && item?.user?.is_seated === 0"
+                class="whitespace-nowrap text-center"
+            >
+                <Icon name="mdi:check-bold" class="text-xl text-green-400" />
+            </p>
+        </td>
+        <td class="px-6 py-4 text-center border border-slate-600">
             <button
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 @click="handleSelectSeat(item)"

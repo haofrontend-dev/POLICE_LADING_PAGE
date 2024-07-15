@@ -1,16 +1,16 @@
 <template>
-    <footer class="pt-[30px] pb-[70px] bg-[#F8E6A6]">
+    <footer class="pt-2 md:pt-[30px] pb-[70px] bg-[#F8E6A6]">
         <div class="md:container mx-auto">
-            <div class="flex justify-between items-center gap-3">
-                <div class="w-[130px] md:w-[130px]">
-                    <img src="~/assets/images/logo_left.jpg" />
+            <div class="flex justify-center md:justify-between md:items-center gap-3">
+                <div class="w-[80px] md:w-[130px]">
+                    <img src="~/assets/images/logo_while.png" class="object-cover" />
                 </div>
                 <div class="hidden sm:block text-[#962400] text-base sm:text-lg font-bold drop-shadow-md text-center">
                     <p c>ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT CƠ ĐỘNG. ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG BỘ</p>
                     <span class="my-3">* * *</span>
                 </div>
-                <div class="w-[130px] md:w-[130px]">
-                    <img src="~/assets/images/logo_footer_2.png" />
+                <div class="w-[80px] h-[80px] md:w-[130px]">
+                    <img src="~/assets/images/logo_footer_2.png" class="object-cover h-full" />
                 </div>
             </div>
 
