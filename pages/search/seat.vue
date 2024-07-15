@@ -204,7 +204,7 @@
                                         v-if="loading"
                                         name="eos-icons:loading"
                                     />
-                                    Đặt chỗ
+                                    Xác nhận
                                 </button>
                             </div>
 
@@ -332,7 +332,7 @@
                                             v-if="loading"
                                             name="eos-icons:loading"
                                         />
-                                        Đặt chỗ
+                                        Xác nhận
                                     </button>
                                 </div>
                             </form>

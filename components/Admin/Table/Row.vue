@@ -84,7 +84,7 @@
                             @click="handleRegisterSeat(item)"
                         >
                             <Icon v-if="loading" name="eos-icons:loading" />
-                            Đặt chỗ
+                            Xác nhận
                         </button>
                     </div>
 
@@ -150,7 +150,7 @@
                                 for="countries"
                                 class="block mb-2 text-lg text-[#962400] font-bold"
                             >
-                                Cấp bật
+                                Cấp bậc
                             </label>
                             <div>
                                 <input
@@ -187,7 +187,7 @@
                                 @click="handleRegisterSeat(item)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
-                                Đặt chỗ
+                                Xác nhận
                             </button>
                         </div>
                     </div>

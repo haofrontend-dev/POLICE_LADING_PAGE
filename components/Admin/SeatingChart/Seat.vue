@@ -330,7 +330,7 @@ const handleChangeSeat = async () => {
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
-                                Đặt chỗ
+                                Xác nhận
                             </button>
 
                             <button
@@ -406,7 +406,7 @@ const handleChangeSeat = async () => {
                                     for="countries"
                                     class="block mb-2 text-lg text-[#962400] font-bold"
                                 >
-                                    Cấp bật
+                                    Cấp bậc
                                 </label>
                                 <div>
                                     <input
@@ -446,7 +446,7 @@ const handleChangeSeat = async () => {
                                         v-if="loading"
                                         name="eos-icons:loading"
                                     />
-                                    Đặt chỗ
+                                    Xác nhận
                                 </button>
 
                                 <button
