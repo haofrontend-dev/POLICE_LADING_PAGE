@@ -1,6 +1,6 @@
 ---
 title: TRUNG ĐOÀN CSCĐ TRUNG BỘ
-subtitle: 10 NĂM X Y DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN!
+subtitle: 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN!
 author: Đại tá Đỗ Ngọc Anh - Trung đoàn trưởng E28
 ---
 
