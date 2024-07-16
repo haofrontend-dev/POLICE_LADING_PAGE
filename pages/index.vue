@@ -163,8 +163,7 @@ onMounted(() => {
                         <span
                             class="text-[13px] sm:text-lg lg:text-2xl text-center font-bold drop-shadow-md"
                         >
-                            KÍNH MỜI CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU BẤM VÀO ĐÂY
-                            ĐỂ TÌM KIẾM CHỖ NGỒI (Ô TÌM KIẾM)
+                            TÌM KIẾM CHỖ NGỒI
                         </span>
                     </button>
                 </div>
@@ -179,8 +178,7 @@ onMounted(() => {
                         <span
                             class="text-[13px] sm:text-lg lg:text-[20px] text-center font-bold drop-shadow-md border border-[#FFEF5E] block p-1"
                         >
-                            TÌM HIỂU VỀ MÔ HÌNH TỔ CHỨC CỦA TRUNG ĐOÀN CSCĐ
-                            TRUNG BỘ.
+                            BÀI VIẾT KỶ NIỆM 10 NĂM THÀNH LẬP ĐƠN VỊ.
                         </span>
                     </NuxtLink>
                 </div>
@@ -190,8 +188,7 @@ onMounted(() => {
                 <h3
                     class="my-[73px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
                 >
-                    VIDEO TRUNG ĐOÀN CSCĐ TRUNG BỘ - 1O NĂM XÂY DỰNG, CHIẾN ĐẤU
-                    VÀ PHÁT TRIỂN!
+                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ.
                 </h3>
 
                 <div class="px-2 md:px-20 relative">

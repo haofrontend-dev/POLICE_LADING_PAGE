@@ -12,7 +12,7 @@
                     class="flex justify-center max-w-[80px] md:max-w-[168px] h-full items-center md:border-r md:border-[#962400]"
                 >
                     <img
-                        src="~/assets/images/logo_while.png"
+                        src="~/assets/images/logo_left.jpg"
                         class="object-cover h-full"
                     />
                 </NuxtLink>
@@ -34,16 +34,16 @@
                     <h3
                         class="text-base md:text-lg lg:text-2xl font-semibold drop-shadow-md text-center"
                     >
-                        VÀ ĐÓN NHẬN HUÂN CHƯƠNG BẢO VỆ TỔ QUỐC HẠNG NHÌ.
+                        VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA.
                     </h3>
                 </div>
 
                 <div
-                    class="flex h-full justify-center items-center md:py-[13px] px-[20px] md:px-[20px] lg:px-[46px]"
+                    class="flex h-full justify-center items-center px-[20px] md:px-[20px] lg:px-[46px]"
                 >
                     <img
-                        src="~/assets/images/logo_right.png"
-                        class="h-[80px] md:h-full w-full object-cover"
+                        src="~/assets/images/logo_doan.png"
+                        class="h-[80px] md:h-full max-w-[80px] md:max-w-[168px] object-cover"
                     />
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <h3
                     class="text-sm md:text-lg lg:text-2xl font-semibold drop-shadow-md text-center"
                 >
-                    VÀ ĐÓN NHẬN HUÂN CHƯƠNG BẢO VỆ TỔ QUỐC HẠNG NHÌ.
+                    VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA.
                 </h3>
             </div>
         </div>
