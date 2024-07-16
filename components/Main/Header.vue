@@ -6,7 +6,7 @@
         class="w-full fixed top-0 left-0 right-0 h-auto z-50 bg-[#F8E6A6] shadow-md"
     >
         <div class="h-full">
-            <div class="flex justify-center md:justify-between h-full items-center">
+            <div class="flex justify-center gap-3 md:gap-0 md:justify-between h-full items-center">
                 <NuxtLink
                     to="/"
                     class="flex justify-center max-w-[80px] md:max-w-[168px] h-full items-center md:border-r md:border-[#962400]"
@@ -39,7 +39,7 @@
                 </div>
 
                 <div
-                    class="flex h-full justify-center items-center px-[20px] md:px-[20px] lg:px-[46px]"
+                    class="flex h-full justify-center items-center md:px-[20px] lg:px-[46px]"
                 >
                     <img
                         src="~/assets/images/logo_doan.png"
