@@ -13,9 +13,11 @@
                 >
                     <p >
                         ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT
-                        CƠ ĐỘNG, ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG
-                        BỘ.
+                        CƠ ĐỘNG.
                     </p>
+
+                    <p>ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG
+                            BỘ.</p>
                     <span class="my-3">* * *</span>
 
                     <div
@@ -42,11 +44,14 @@
             </div>
 
             <div
-                class="block sm:hidden text-[#962400] text-sm sm:text-xl font-bold drop-shadow-md text-center mt-3 px-5"
+                class="block sm:hidden text-[#962400] text-sx sm:text-xl font-bold drop-shadow-md text-center mt-3 px-5"
             >
-                <p>
+                <p >
                     ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT CƠ
-                    ĐỘNG, ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG BỘ
+                    ĐỘNG.
+                </p>
+                <p>
+                    ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG BỘ
                 </p>
                 <span class="my-3">* * *</span>
 
