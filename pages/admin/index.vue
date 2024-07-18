@@ -145,7 +145,7 @@
                         type="button"
                     >
                         <Icon v-if="loading" name="eos-icons:loading" />
-                        Xác nhận tham gia
+                        Tìm kiếm
                     </button>
                 </div>
             </form>

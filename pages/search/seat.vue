@@ -2,7 +2,7 @@
     <div class="px-4">
         <div class="mt-10 lg:px-6">
             <h2 class="text-2xl font-bold text-[#FFC700] text-center uppercase">
-                TÌM KIẾM CHỖ NGỒI
+                XÁC NHẬN THAM GIA
             </h2>
             <form
                 class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[20px] mt-4"
