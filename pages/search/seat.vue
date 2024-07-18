@@ -145,7 +145,7 @@
                         type="button"
                     >
                         <Icon v-if="loading" name="eos-icons:loading" />
-                        Tìm kiếm
+                         Xác nhận tham gia
                     </button>
                 </div>
             </form>
@@ -195,17 +195,19 @@
                                     Hủy chỗ
                                 </button>
 
-                                <button
-                                    v-else
-                                    class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
-                                    @click="handleRegisterSeat(selectAgency)"
-                                >
-                                    <Icon
-                                        v-if="loading"
-                                        name="eos-icons:loading"
-                                    />
-                                    Xác nhận
-                                </button>
+                               <div v-else class="flex items-center justify-center">
+                                    <button
+                                       
+                                        class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#FFC700] text-white hover:opacity-80"
+                                        @click="handleRegisterSeat(selectAgency)"
+                                    >
+                                        <Icon
+                                            v-if="loading"
+                                            name="eos-icons:loading"
+                                        />
+                                        Xác nhận tham gia
+                                    </button>
+                               </div>
                             </div>
 
                             <!-- START FORM DELEGATE -->
@@ -324,7 +326,7 @@
                                     </div>
                                 </div>
 
-                                <div class="lg:col-span-2">
+                                <div class="lg:col-span-2 flex justify-center">
                                     <button
                                         class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#962400] text-white hover:opacity-80"
                                     >
@@ -332,7 +334,7 @@
                                             v-if="loading"
                                             name="eos-icons:loading"
                                         />
-                                        Xác nhận
+                                        Xác nhận tham gia
                                     </button>
                                 </div>
                             </form>
@@ -553,6 +555,7 @@ const handleRegisterSeat = async (user_delegate) => {
     closeModal();
     resetForm();
     loading.value = false;
+    return navigateTo("/")
 };
 
 const handleDeleteSeat = async (user_delegate) => {
