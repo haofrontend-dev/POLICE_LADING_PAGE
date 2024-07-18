@@ -246,7 +246,7 @@ const handleDeleteSeat = async (user_delegate) => {
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
-                                Xác nhận
+                                Xác nhận tham gia
                             </button>
                         </div>
 
@@ -352,7 +352,7 @@ const handleDeleteSeat = async (user_delegate) => {
                                         v-if="loading"
                                         name="eos-icons:loading"
                                     />
-                                    Xác nhận
+                                    Xác nhận tham gia
                                 </button>
                             </div>
                         </form>

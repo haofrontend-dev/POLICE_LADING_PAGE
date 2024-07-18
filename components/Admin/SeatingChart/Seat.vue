@@ -330,7 +330,7 @@ const handleChangeSeat = async () => {
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
-                                Xác nhận
+                                Xác nhận tham gia
                             </button>
 
                             <button
@@ -446,7 +446,7 @@ const handleChangeSeat = async () => {
                                         v-if="loading"
                                         name="eos-icons:loading"
                                     />
-                                    Xác nhận
+                                    Xác nhận tham gia
                                 </button>
 
                                 <button
