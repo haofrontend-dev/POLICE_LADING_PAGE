@@ -188,7 +188,7 @@ onMounted(() => {
 
             <div class="md:container mx-auto">
                 <h3
-                    class="my-[73px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
+                    class="my-[50px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
                 >
                     PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG
                     ĐOÀN CSCĐ TRUNG BỘ
