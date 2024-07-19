@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                lato: ["Lato", "sans-serif"],
+                lato: ["Roboto", "sans-serif"],
             },
             animation: {
                 marquee: "marquee 10s linear infinite",
@@ -27,6 +27,9 @@ module.exports = {
                     "100%": { transform: "translateX(0%)" },
                 },
             },
+            colors: {
+                primary: "#962400",
+            }
         },
     },
     plugins: [],

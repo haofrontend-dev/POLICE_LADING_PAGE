@@ -216,6 +216,10 @@ onMounted(() => {
             </div>
         </section>
 
+        <!-- <section class="my-[80px] md:my-[160px]">
+            <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" />
+        </section> -->
+
         <section class="my-[80px] md:my-[160px]">
             <div class="md:max-w-[1440px] mx-auto">
                 <h2

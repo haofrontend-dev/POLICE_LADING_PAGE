@@ -44,7 +44,7 @@
             </div>
 
             <div
-                class="block sm:hidden text-[#962400] text-[9px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-1 md:px-5"
+                class="block sm:hidden text-[#962400] text-[10px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-1 md:px-5"
             >
                 <p >
                     ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT CƠ

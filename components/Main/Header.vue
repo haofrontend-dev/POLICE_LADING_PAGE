@@ -12,7 +12,7 @@
                     class="flex justify-center max-w-[80px] md:max-w-[168px] h-full items-center md:border-r md:border-[#962400]"
                 >
                     <img
-                        src="~/assets/images/logo_left.jpg"
+                        src="~/assets/images/logo_while.png"
                         class="object-cover h-full"
                     />
                 </NuxtLink>
@@ -43,7 +43,7 @@
                 >
                     <img
                         src="~/assets/images/logo_doan.png"
-                        class="h-[80px] md:h-full max-w-[80px] md:max-w-[168px] object-cover"
+                        class="h-[55px] md:h-full max-w-[80px] md:max-w-[168px] object-cover"
                     />
                 </div>
             </div>
