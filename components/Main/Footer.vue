@@ -12,12 +12,11 @@
                     class="hidden sm:block text-[#962400] text-base sm:text-lg font-bold drop-shadow-md text-center"
                 >
                     <p >
-                        ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT
-                        CƠ ĐỘNG
+                        ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CSCĐ
                     </p>
 
                     <p>ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG
-                            BỘ.</p>
+                            BỘ</p>
                     <span class="my-3">* * *</span>
 
                     <div
@@ -44,11 +43,10 @@
             </div>
 
             <div
-                class="block sm:hidden text-[#962400] text-[10px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-1 md:px-5"
+                class="block sm:hidden text-[#962400] text-[12px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-1 md:px-5"
             >
                 <p >
-                    ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT CƠ
-                    ĐỘNG
+                    ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CSCĐ
                 </p>
                 <p>
                     ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG BỘ
