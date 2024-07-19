@@ -178,7 +178,7 @@ onMounted(() => {
                         <span
                             class="text-[13px] sm:text-lg lg:text-[20px] text-center font-bold drop-shadow-md border border-[#FFEF5E] block p-1"
                         >
-                            BÀI VIẾT KỶ NIỆM 10 NĂM THÀNH LẬP ĐƠN VỊ.
+                            BÀI VIẾT KỶ NIỆM 10 NĂM THÀNH LẬP ĐƠN VỊ
                         </span>
                     </NuxtLink>
                 </div>
@@ -188,7 +188,7 @@ onMounted(() => {
                 <h3
                     class="my-[73px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
                 >
-                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ.
+                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ
                 </h3>
 
                 <div class="px-2 md:px-20 relative">
@@ -221,7 +221,7 @@ onMounted(() => {
                 <h2
                     class="uppercase text-center lg:text-[20px] font-bold text-[#962400] mb-6 md:mb-14"
                 >
-                    HÌNH ẢNH HOẠT ĐỘNG CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ
+                    TIN HOẠT ĐỘNG CHÀO MỪNG KỶ NIỆM 
                 </h2>
 
                 <Swiper

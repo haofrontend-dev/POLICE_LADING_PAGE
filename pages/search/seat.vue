@@ -180,7 +180,7 @@
                                 </p>
                                 <button
                                     v-if="
-                                        isHasUserSeat(
+                                        isHasUserSeatCheckin(
                                             selectAgency?.seat_code,
                                             seatedState
                                         )

@@ -1,5 +1,5 @@
 <script setup>
-import { isHasUserSeat } from "~~/utils/getName";
+import { isHasUserSeatCheckin, isHasUserSeat } from "~~/utils/getName";
 const { $swal } = useNuxtApp();
 const client = useSupabaseClient();
 
@@ -59,14 +59,33 @@ const closeModalChangeSeat = () => {
 const createUserSeat = async (data_user) => {
     try {
         loading.value = true;
-        const { data, error } = await client.from("user_seats").insert({
-            id_user: data_user.id,
-            seat_code: data_user.seat_code,
-            is_seated: 1,
-        });
 
-        if (error) {
-            throw error;
+        const { data: user_seats } = await client
+            .from("user_seats")
+            .select("*")
+            .eq("id_user", data_user.id);
+
+        if (user_seats.length > 0) {
+            const { error } = await client
+                .from("user_seats")
+                .update({
+                    is_seated: 1,
+                })
+                .eq("id", user_seats[0].id);
+
+            if (error) {
+                throw error;
+            }
+        } else {
+            const { error } = await client.from("user_seats").insert({
+                id_user: data_user.id,
+                seat_code: data_user.seat_code,
+                is_seated: 1,
+            });
+
+            if (error) {
+                throw error;
+            }
         }
 
         $swal.fire({
@@ -143,6 +162,7 @@ const handleRegisterSeat = async (user_delegate) => {
 
     const { data: userSeated } = await client.from("user_seats").select("*");
     seatedState.value = userSeated || [];
+    seatCodeValue.value = "";
     closeModal();
     return;
 };
@@ -259,17 +279,18 @@ const handleChangeSeat = async () => {
                 class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF] relative"
                 :data-id="col"
                 :class="[
+                    isHasUserSeatCheckin(col, seatedState) ||
                     isHasUserSeat(col, seatedState)
                         ? 'bg-amber-400'
                         : 'bg-red-500',
-                    selectSeatId?.seat_code == col ? 'blink !bg-green-500' : '',
+                    selectSeatId?.seat_code == col ? 'blink' : '',
                 ]"
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
             >
                 <p class="whitespace-nowrap absolute top-0 right-0">
                     <Icon
-                        v-if="isHasUserSeat(col, seatedState)"
+                        v-if="isHasUserSeatCheckin(col, seatedState)"
                         name="lets-icons:check-fill"
                         class="text-xl text-green-400"
                     />
@@ -315,6 +336,10 @@ const handleChangeSeat = async () => {
 
                             <button
                                 v-if="
+                                    isHasUserSeatCheckin(
+                                        seatCodeSelect,
+                                        seatedState
+                                    ) ||
                                     isHasUserSeat(seatCodeSelect, seatedState)
                                 "
                                 class="px-[20px] inline-flex items-center gap-2 rounded-md py-1 md:py-2 text-base bg-[#962400] text-white hover:opacity-80"
@@ -335,6 +360,10 @@ const handleChangeSeat = async () => {
 
                             <button
                                 v-if="
+                                    !isHasUserSeatCheckin(
+                                        seatCodeSelect,
+                                        seatedState
+                                    ) &&
                                     !isHasUserSeat(seatCodeSelect, seatedState)
                                 "
                                 class="px-[20px] inline-flex ml-2 items-center gap-2 rounded-md py-1 md:py-2 text-base bg-green-400 text-white hover:opacity-80"
@@ -525,19 +554,21 @@ const handleChangeSeat = async () => {
 }
 
 .blink {
+    position: relative;
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
 
 @keyframes blink-animation {
     to {
-        visibility: hidden;
+        background-color: #22c55e;
     }
 }
 
 @-webkit-keyframes blink-animation {
     to {
-        visibility: hidden;
+        background-color: #22c55e;
+
     }
 }
 

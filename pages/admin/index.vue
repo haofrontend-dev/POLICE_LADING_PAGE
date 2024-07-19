@@ -4,7 +4,7 @@
             <h2 class="text-2xl font-bold text-[#FFC700] text-center uppercase">
                 TÌM KIẾM CHỖ NGỒI
             </h2>
-            <form
+            <div
                 class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[20px]"
             >
                 <div>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="flex items-center gap-2">
                     <button
                         class="px-[43px] h-full rounded-md py-3 text-lg bg-[#962400] text-white hover:opacity-80 inline-flex items-center gap-2"
                         @click="handleSearchSeat"
@@ -147,8 +147,15 @@
                         <Icon v-if="loading" name="eos-icons:loading" />
                         Tìm kiếm
                     </button>
+                    <button
+                        type="button"
+                        class="px-[43px] h-full rounded-md py-3 text-lg flex font-bold items-center justify-center text-[#FFC700] border border-[#FFC700] hover:bg-[#FFC700] hover:text-white"
+                        @click="handleResetData"
+                    >
+                        <Icon name="system-uicons:reset" />
+                    </button>
                 </div>
-            </form>
+            </div>
 
             <AdminSeatingChart :seat-id="selectedSeatDara" />
         </div>
@@ -244,6 +251,11 @@ const handleSearchSeat = () => {
         });
     }, 1000);
 };
+
+const handleResetData = async () => {
+    const { data } = await client.from("user_seats").select("*");
+    seatedState.value = data || [];
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -2,7 +2,7 @@
     <footer class="pt-2 md:pt-[30px] pb-[70px] bg-[#F8E6A6]">
         <div class="md:container mx-auto">
             <div class="flex justify-center md:justify-between gap-3">
-                <div class="w-[80px] md:w-[130px] flex-shrink-0">
+                <div class="w-[60px] md:w-[130px] flex-shrink-0">
                     <img
                         src="~/assets/images/logo_cscd.png"
                         class="object-cover w-full"
@@ -13,7 +13,7 @@
                 >
                     <p >
                         ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT
-                        CƠ ĐỘNG.
+                        CƠ ĐỘNG
                     </p>
 
                     <p>ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG
@@ -35,7 +35,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="w-[80px] md:w-[130px] flex-shrink-0">
+                <div class="w-[60px] md:w-[130px] flex-shrink-0">
                     <img
                         src="~/assets/images/logo_footer_2.png"
                         class="object-cover w-full"
@@ -44,11 +44,11 @@
             </div>
 
             <div
-                class="block sm:hidden text-[#962400] text-sx sm:text-xl font-bold drop-shadow-md text-center mt-3 px-5"
+                class="block sm:hidden text-[#962400] text-[9px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-1 md:px-5"
             >
                 <p >
                     ĐOÀN THANH NIÊN CỘNG SẢN HỒ CHÍ MINH BỘ TƯ LỆNH CẢNH SÁT CƠ
-                    ĐỘNG.
+                    ĐỘNG
                 </p>
                 <p>
                     ĐOÀN CƠ SỞ TRUNG ĐOÀN CẢNH SÁT CƠ ĐỘNG TRUNG BỘ
@@ -56,7 +56,7 @@
                 <span class="my-3">* * *</span>
 
                 <div
-                    class="text-[#962400] text-sm sm:text-xl font-bold drop-shadow-md text-center mt-3 px-2 xl:-translate-y-8"
+                    class="text-[#962400] text-[12px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-2 xl:-translate-y-8"
                 >
                     <p>CÔNG TRÌNH THANH NIÊN</p>
                     <p class="text-center">
@@ -64,7 +64,7 @@
                         CSCĐ TRUNG BỘ (25/7/2014 - 25/7/2024)
                     </p>
                     <p
-                        class="text-center text-base font-semibold italic text-[#962400] mt-2"
+                        class="text-center text-[12px] md:text-base font-semibold italic text-[#962400] mt-2"
                     >
                         Quảng Nam, Tháng 7 năm 2024
                     </p>

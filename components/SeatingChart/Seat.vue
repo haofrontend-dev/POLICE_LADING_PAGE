@@ -1,5 +1,5 @@
 <script setup>
-import { isHasUserSeat } from "~~/utils/getName";
+import { isHasUserSeatCheckin } from "~~/utils/getName";
 const { $swal } = useNuxtApp();
 const client = useSupabaseClient();
 
@@ -52,14 +52,33 @@ const closeModal = () => {
 const createUserSeat = async (data_user) => {
     try {
         loading.value = true;
-        const { data, error } = await client.from("user_seats").insert({
-            id_user: data_user.id,
-            seat_code: data_user.seat_code,
-            is_seated: 1,
-        });
 
-        if (error) {
-            throw error;
+        const { data: user_seats } = await client
+            .from("user_seats")
+            .select("*")
+            .eq("id_user", data_user.id);
+
+        if (user_seats.length > 0) {
+            const { error } = await client
+                .from("user_seats")
+                .update({
+                    is_seated: 1,
+                })
+                .eq("id", user_seats[0].id);
+
+            if (error) {
+                throw error;
+            }
+        } else {
+            const { error } = await client.from("user_seats").insert({
+                id_user: data_user.id,
+                seat_code: data_user.seat_code,
+                is_seated: 1,
+            });
+
+            if (error) {
+                throw error;
+            }
         }
 
         $swal.fire({
@@ -171,7 +190,6 @@ const handleDeleteSeat = async (user_delegate) => {
         loading.value = false;
     }
 };
-
 </script>
 
 <template>
@@ -184,10 +202,10 @@ const handleDeleteSeat = async (user_delegate) => {
                 :data-id="col"
                 :id="col"
                 :class="[
-                    isHasUserSeat(col, seatedState)
+                    isHasUserSeatCheckin(col, seatedState)
                         ? 'bg-amber-400'
                         : 'bg-red-500',
-                    selectSeatId?.seat_code == col ? 'blink !bg-green-500' : '',
+                    selectSeatId?.seat_code == col ? 'blink' : '',
                 ]"
                 :style="seatStyle"
                 @click="handleSelectSeat(col)"
@@ -231,7 +249,10 @@ const handleDeleteSeat = async (user_delegate) => {
                             />
                             <button
                                 v-if="
-                                    isHasUserSeat(seatCodeSelect, seatedState)
+                                    isHasUserSeatCheckin(
+                                        seatCodeSelect,
+                                        seatedState
+                                    )
                                 "
                                 class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
                                 @click="handleDeleteSeat(infoDelegate)"
@@ -246,7 +267,7 @@ const handleDeleteSeat = async (user_delegate) => {
                                 @click="handleRegisterSeat(infoDelegate)"
                             >
                                 <Icon v-if="loading" name="eos-icons:loading" />
-                                Xác nhận tham gia
+                                Check in
                             </button>
                         </div>
 
@@ -352,7 +373,7 @@ const handleDeleteSeat = async (user_delegate) => {
                                         v-if="loading"
                                         name="eos-icons:loading"
                                     />
-                                    Xác nhận tham gia
+                                    Check in
                                 </button>
                             </div>
                         </form>
@@ -372,19 +393,21 @@ const handleDeleteSeat = async (user_delegate) => {
 }
 
 .blink {
+    position: relative;
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
 
 @keyframes blink-animation {
     to {
-        visibility: hidden;
+        background-color: #22c55e;
     }
 }
 
 @-webkit-keyframes blink-animation {
     to {
-        visibility: hidden;
+        background-color: #22c55e;
+
     }
 }
 

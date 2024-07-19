@@ -1,5 +1,5 @@
 <script setup>
-import { isHasUserSeat } from "~~/utils/getName";
+import { isHasUserSeatCheckin } from "~~/utils/getName";
 const { $swal } = useNuxtApp();
 const client = useSupabaseClient();
 
@@ -182,7 +182,7 @@ const handleDeleteSeat = async (user_delegate) => {
                 class="px-2 w-full flex-shrink-0 py-6 cursor-pointer hover:opacity-80 border-r border-[#DFDFDF]"
                 :data-id="col"
                 :class="[
-                    isHasUserSeat(col, seatedState) ||
+                    isHasUserSeatCheckin(col, seatedState) ||
                     selectSeatId?.seat_code == col
                         ? 'bg-amber-400'
                         : 'bg-red-500',
@@ -231,7 +231,7 @@ const handleDeleteSeat = async (user_delegate) => {
                             />
                             <button
                                 v-if="
-                                    isHasUserSeat(seatCodeSelect, seatedState)
+                                    isHasUserSeatCheckin(seatCodeSelect, seatedState)
                                 "
                                 class="px-[43px] inline-flex items-center gap-2 rounded-md py-1 md:py-3 text-lg bg-[#962400] text-white hover:opacity-80"
                                 @click="handleDeleteSeat(infoDelegate)"
