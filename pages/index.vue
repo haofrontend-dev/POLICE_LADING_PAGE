@@ -140,16 +140,18 @@ onMounted(() => {
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
-                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ TRUNG BỘ (25/07/2024 - 25/07/2024)</span
+                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ
+                        TRUNG BỘ (25/07/2024 - 25/07/2024)</span
                     >
                 </div>
 
                 <div
-                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700]  whitespace-nowrap flex-shrink-0"
+                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
-                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ TRUNG BỘ (25/07/2024 - 25/07/2024)</span
+                        ĐẾN DỰ LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN CSCĐ
+                        TRUNG BỘ (25/07/2024 - 25/07/2024)</span
                     >
                 </div>
             </div>
@@ -188,47 +190,47 @@ onMounted(() => {
                 <h3
                     class="my-[73px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
                 >
-                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ
+                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG
+                    ĐOÀN CSCĐ TRUNG BỘ
                 </h3>
 
                 <div class="px-2 md:px-20 relative">
                     <div class="w-full relative">
-                        <video
-                            ref="video"
-                            class="w-full"
-                            :controls="!isShowPlay"
-                            poster="~/assets/images/thumb_video.png"
-                        >
-                            <source
-                                src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
-                                type="video/mp4"
-                            />
-                        </video>
-                        <button
+                        <!-- <button
                             v-if="isShowPlay"
                             class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[1] w-[80px] h-[80px] rounded-full flex justify-center items-center bg-[#D9D9D9] hover:opacity-80"
                             @click="playVideo()"
                         >
                             <IconPlay />
-                        </button>
+                        </button> -->
+
+                        <div class="w-full h-[200px] sm:h-[400px] lg:h-[700px]">
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/dv0TYQvj-o0?si=TRPkaJxpFUt3RhRC"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- <section class="my-[80px] md:my-[160px]">
-            <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" />
-        </section> -->
-
         <section class="my-[80px] md:my-[160px]">
-            <div class="md:max-w-[1440px] mx-auto">
+            <div class="md:max-w-[1200px] mx-auto">
                 <h2
                     class="uppercase text-center lg:text-[20px] font-bold text-[#962400] mb-6 md:mb-14"
                 >
-                    TIN HOẠT ĐỘNG CHÀO MỪNG KỶ NIỆM 
+                    TIN HOẠT ĐỘNG CHÀO MỪNG KỶ NIỆM
                 </h2>
 
-                <Swiper
+                <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" />
+                <!-- <Swiper
                     :modules="[SwiperAutoplay, SwiperNavigation]"
                     :loop="true"
                     :effect="'creative'"
@@ -277,7 +279,7 @@ onMounted(() => {
                             </div>
                         </div>
                     </SwiperSlide>
-                </Swiper>
+                </Swiper> -->
             </div>
         </section>
 

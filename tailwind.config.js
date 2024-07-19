@@ -29,7 +29,7 @@ module.exports = {
             },
             colors: {
                 primary: "#962400",
-            }
+            },
         },
     },
     plugins: [],
