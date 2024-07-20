@@ -1,9 +1,9 @@
 <template>
     <div class="container mx-auto py-[50px]">
-        <div class="mb-4 max-w-4xl mx-auto">
-            <h1 class="text-2xl text-center font-bold">{{ data.title }}</h1>
-            <h2 class="text-2xl text-center font-bold">{{ data.subtitle }}</h2>
-            <h3 class="text-right italic text-xl font-medium">{{ data.author }}</h3>
+        <div class="mb-4 max-w-4xl mx-auto px-2">
+            <h1 class="text-base md:text-2xl text-center font-bold">{{ data.title }}</h1>
+            <h2 class="text-base md:text-2xl text-center font-bold">{{ data.subtitle }}</h2>
+            <h3 class="text-right italic text-sm md:text-xl font-medium">{{ data.author }}</h3>
         </div>
         <div class="max-w-5xl mx-auto px-2">
             <ContentRenderer style="width: 100%" :value="data" class="text-justify" />

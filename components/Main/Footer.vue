@@ -1,5 +1,5 @@
 <template>
-    <footer class="pt-2 md:pt-[30px] pb-[70px] bg-[#F8E6A6]">
+    <footer class="pt-2 md:pt-[30px] pb-[20px] bg-[#F8E6A6]">
         <div class="md:container mx-auto">
             <div class="flex justify-center md:justify-between gap-3">
                 <div class="w-[40px] md:w-[130px] flex-shrink-0">
@@ -54,12 +54,12 @@
                 <span class="my-3">* * *</span>
 
                 <div
-                    class="text-[#962400] text-[12px] sm:text-xl font-bold drop-shadow-md text-center mt-3 px-2 xl:-translate-y-8"
+                    class="text-[#962400] text-[12px] sm:text-xl font-bold drop-shadow-md text-center mt-2 px-2 xl:-translate-y-8"
                 >
                     <p>CÔNG TRÌNH THANH NIÊN</p>
                     <p class="text-center">
                         CHÀO MỪNG LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP <br /> TRUNG ĐOÀN
-                        CSCĐ TRUNG BỘ <br /> (25/7/2014 - 25/7/2024)
+                        CSCĐ TRUNG BỘ (25/7/2014 - 25/7/2024)
                     </p>
                     <!-- <p
                         class="text-center text-[12px] md:text-base font-semibold italic text-[#962400] mt-2"
