@@ -34,7 +34,7 @@
                     <h3
                         class="text-base md:text-lg lg:text-2xl font-semibold drop-shadow-md text-center"
                     >
-                        VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA.
+                        VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA
                     </h3>
                 </div>
 
@@ -49,7 +49,7 @@
             </div>
 
             <div
-                class="flex md:hidden flex-col items-center text-[#962400] hover:text-[#962400]/80 uppercase px-4 mb-3 md:mb-0 md:px-0 mt-3"
+                class="flex md:hidden flex-col items-center text-[#962400] hover:text-[#962400]/80 uppercase px-4 mb-3 md:mb-0 md:px-0"
             >
                 <h1
                     class="text-base md:text-2xl lg:text-3xl font-bold drop-shadow-md text-center"
@@ -65,7 +65,7 @@
                 <h3
                     class="text-sm md:text-lg lg:text-2xl font-semibold drop-shadow-md text-center"
                 >
-                    VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA.
+                    VÀ ĐÓN NHẬN HUÂN CHƯƠNG CHIẾN CÔNG HẠNG BA
                 </h3>
             </div>
         </div>

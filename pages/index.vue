@@ -146,7 +146,7 @@ onMounted(() => {
                 </div>
 
                 <div
-                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
+                    class="absolute rop-0 animate-marquee2  py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
@@ -188,9 +188,9 @@ onMounted(() => {
 
             <div class="md:container mx-auto">
                 <h3
-                    class="my-[50px] text-center text-[#962400] text-base sm:text-[20px] font-semibold"
+                    class="my-[50px] text-center text-[#962400] text-base sm:text-[20px] px-2 font-semibold"
                 >
-                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU VÀ PHÁT TRIỂN CỦA TRUNG
+                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU <br class="block sm:hidden" /> VÀ PHÁT TRIỂN CỦA TRUNG
                     ĐOÀN CSCĐ TRUNG BỘ
                 </h3>
 
@@ -221,15 +221,15 @@ onMounted(() => {
             </div>
         </section>
 
-        <section class="my-[80px] md:my-[160px]">
+        <!-- <section class="my-[80px] md:my-[160px]">
             <div class="md:max-w-[1200px] mx-auto">
                 <h2
                     class="uppercase text-center lg:text-[20px] font-bold text-[#962400] mb-6 md:mb-14"
                 >
                     TIN HOẠT ĐỘNG CHÀO MỪNG KỶ NIỆM
-                </h2>
+                </h2> -->
 
-                <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" />
+                <!-- <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" /> -->
                 <!-- <Swiper
                     :modules="[SwiperAutoplay, SwiperNavigation]"
                     :loop="true"
@@ -280,8 +280,8 @@ onMounted(() => {
                         </div>
                     </SwiperSlide>
                 </Swiper> -->
-            </div>
-        </section>
+            <!-- </div>
+        </section> -->
 
         <div class="flex items-center gap-2 mb-2 pl-3">
             <p class="text-lg md:text-2xl text-[#333] font-bold">
@@ -491,4 +491,6 @@ onMounted(() => {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+
+</style>

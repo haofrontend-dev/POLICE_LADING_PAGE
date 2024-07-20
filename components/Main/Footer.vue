@@ -2,7 +2,7 @@
     <footer class="pt-2 md:pt-[30px] pb-[70px] bg-[#F8E6A6]">
         <div class="md:container mx-auto">
             <div class="flex justify-center md:justify-between gap-3">
-                <div class="w-[60px] md:w-[130px] flex-shrink-0">
+                <div class="w-[40px] md:w-[130px] flex-shrink-0">
                     <img
                         src="~/assets/images/logo_cscd.png"
                         class="object-cover w-full"
@@ -27,14 +27,14 @@
                             CHÀO MỪNG LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG
                             ĐOÀN CSCĐ TRUNG BỘ (25/7/2014 - 25/7/2024)
                         </p>
-                        <p
+                        <!-- <p
                             class="text-center text-base font-semibold italic text-[#962400] mt-2"
                         >
                             Quảng Nam, Tháng 7 năm 2024
-                        </p>
+                        </p> -->
                     </div>
                 </div>
-                <div class="w-[60px] md:w-[130px] flex-shrink-0">
+                <div class="w-[40px] md:w-[130px] flex-shrink-0">
                     <img
                         src="~/assets/images/logo_footer_2.png"
                         class="object-cover w-full"
@@ -58,14 +58,14 @@
                 >
                     <p>CÔNG TRÌNH THANH NIÊN</p>
                     <p class="text-center">
-                        CHÀO MỪNG LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP TRUNG ĐOÀN
-                        CSCĐ TRUNG BỘ (25/7/2014 - 25/7/2024)
+                        CHÀO MỪNG LỄ KỶ NIỆM 10 NĂM NGÀY THÀNH LẬP <br /> TRUNG ĐOÀN
+                        CSCĐ TRUNG BỘ <br /> (25/7/2014 - 25/7/2024)
                     </p>
-                    <p
+                    <!-- <p
                         class="text-center text-[12px] md:text-base font-semibold italic text-[#962400] mt-2"
                     >
                         Quảng Nam, Tháng 7 năm 2024
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>
