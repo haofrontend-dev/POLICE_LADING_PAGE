@@ -130,7 +130,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="mt-[18px]">
+    <div class="mt-[10px]">
         <section class="py-8 bg-[#FFF9C0]">
             <div
                 class="w-full bg-[#D71920] px-[30px] uppercase flex relative overflow-x-hidden"
@@ -146,7 +146,7 @@ onMounted(() => {
                 </div>
 
                 <div
-                    class="absolute rop-0 animate-marquee2  py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
+                    class="absolute rop-0 animate-marquee2 py-5 text-center text-base md:text-lg lg:text-[28px] font-bold text-[#FFC700] whitespace-nowrap flex-shrink-0"
                 >
                     <span class="mx-4"
                         >NHIỆT LIỆT CHÀO MỪNG CÁC ĐỒNG CHÍ LÃNH ĐẠO, ĐẠI BIỂU
@@ -190,8 +190,9 @@ onMounted(() => {
                 <h3
                     class="my-[50px] text-center text-[#962400] text-base sm:text-[20px] px-2 font-semibold"
                 >
-                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU <br class="block sm:hidden" /> VÀ PHÁT TRIỂN CỦA TRUNG
-                    ĐOÀN CSCĐ TRUNG BỘ
+                    PHÓNG SỰ 10 NĂM XÂY DỰNG, CHIẾN ĐẤU
+                    <br class="block sm:hidden" />
+                    VÀ PHÁT TRIỂN CỦA TRUNG ĐOÀN CSCĐ TRUNG BỘ
                 </h3>
 
                 <div class="px-2 md:px-20 relative">
@@ -208,7 +209,7 @@ onMounted(() => {
                             <iframe
                                 width="100%"
                                 height="100%"
-                                src="https://www.youtube.com/embed/dv0TYQvj-o0?si=TRPkaJxpFUt3RhRC"
+                                src="https://www.youtube.com/embed/bSgw4FPefrg?si=ofr4tJgWgqj1-D7C"
                                 title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -229,8 +230,8 @@ onMounted(() => {
                     TIN HOẠT ĐỘNG CHÀO MỪNG KỶ NIỆM
                 </h2> -->
 
-                <!-- <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" /> -->
-                <!-- <Swiper
+        <!-- <SectionsHomeNewContent class="md:max-w-[1440px] mx-auto" /> -->
+        <!-- <Swiper
                     :modules="[SwiperAutoplay, SwiperNavigation]"
                     :loop="true"
                     :effect="'creative'"
@@ -280,7 +281,7 @@ onMounted(() => {
                         </div>
                     </SwiperSlide>
                 </Swiper> -->
-            <!-- </div>
+        <!-- </div>
         </section> -->
 
         <div class="flex items-center gap-2 mb-2 pl-3">
@@ -492,5 +493,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-
+.ytp-cued-thumbnail-overlay-image {
+    background-image: url("https://i.ytimg.com/vi/dv0TYQvj-o0/sddefault.jpg?sqp=-oaymwEmCIAFEOAD8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGHIgUygzMA8=&rs=AOn4CLA9fzF0P7X2KgUeEPAnXH8OGiJetw") !important;
+}
 </style>
