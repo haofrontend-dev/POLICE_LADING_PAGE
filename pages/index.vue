@@ -284,12 +284,12 @@ onMounted(() => {
         <!-- </div>
         </section> -->
 
-        <div class="flex items-center gap-2 mb-2 pl-3">
+        <div class="flex items-center gap-2 my-2 pl-3">
             <p class="text-lg md:text-2xl text-[#333] font-bold">
-                Số lương truy cập:
+                Số lượng truy cập:
             </p>
             <p
-                class="px-5 py-1 bg-[#CE7A58] text-[#FFC700] rounded-[5px] font-bold"
+                class="px-3 py-1 bg-[#CE7A58] text-[#FFC700] rounded-[5px] font-bold"
             >
                 {{ counterUser }}
             </p>
